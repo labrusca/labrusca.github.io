@@ -192,8 +192,8 @@
 <!-- <script src="assets/js/app.js"></script> -->
   <script>
     $(document).ready(function(){
-      $("#markedjs").load("test.md",function(data){
-          $(this).html(marked(data));
+      $.lget("test.md",function(data){
+          $("#markedjs").html(marked(data));
       });
   });
   </script>
