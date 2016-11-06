@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bootstrap 实例</title>
+  <title>Labrusca‘s Blog</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="stylesheets/bootstrap.min.css">  
@@ -15,20 +15,17 @@
 		<div class="col-md-12 column">
 			<div class="page-header">
 				<h1>
-					Example page header <small>Subtext for header</small>
+					V0.1.0 <small>我才不会告诉你这里是Labrusca的秘密基地呢！</small>
 				</h1>
 			</div>
 			<nav class="navbar navbar-default navbar-static-top" role="navigation">
 				<div class="navbar-header">
-					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Brand</a>
+					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/">首页</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li class="active">
-							 <a href="#">Link</a>
-						</li>
-						<li>
-							 <a href="#">Link</a>
+							 <a href="#">博客</a>
 						</li>
 						<li class="dropdown">
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
@@ -62,26 +59,7 @@
 					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							 <a href="#">Link</a>
-						</li>
-						<li class="dropdown">
-							 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown<strong class="caret"></strong></a>
-							<ul class="dropdown-menu">
-								<li>
-									 <a href="#">Action</a>
-								</li>
-								<li>
-									 <a href="#">Another action</a>
-								</li>
-								<li>
-									 <a href="#">Something else here</a>
-								</li>
-								<li class="divider">
-								</li>
-								<li>
-									 <a href="#">Separated link</a>
-								</li>
-							</ul>
+							 <a href="#">捐款与支持</a>
 						</li>
 					</ul>
 				</div>
@@ -91,22 +69,23 @@
 					Hello, world!
 				</h1>
 				<p>
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+					我才不会说什么“欢迎来到我的博客”之类的话，想了几个小时，还是这两个单词做欢迎词是最经典的。
 				</p>
 				<p>
-					 <a class="btn btn-primary btn-large" href="#">Learn more</a>
+					 <a class="btn btn-primary btn-large" href="https://github.com/labrusca/">我的Github</a>
 				</p>
 			</div>
 			<div class="row clearfix">
 				<div class="col-md-8 column">
 
-					<ul id="example-1" class="list-group list-unstyled">
+					<ul id="arl-list" class="list-group list-unstyled">
 						<li v-for="article in articles">
-							<a href="article.html?time={{ article.time }}" class="list-group-item">
-								<h4 class="list-group-item-heading">
+							<a href="article.html?time={{ article.time }}&title={{ article.title }}" class="list-group-item">
+								<h2 class="list-group-item-heading">
 									{{ article.title }}
-								</h4>
-								<p class="list-group-item-text">
+								</h2>
+								<br>
+								<p class="list-group-item-text text-primary text-right">
 									发表于 {{ article.time }}
 								</p>
 							</a>
@@ -115,9 +94,10 @@
 
 				</div>
 				<div class="col-md-4 column">
-					<img alt="140x140" src="v3/default3.jpg" class="img-circle" />
+					<div class="center-block"><img alt="140x140" src="img/myphoto.jpg" class="img-circle" /></div>
+					<br>
 					<p class="text-center">
-						 <em>Git</em> 是一个分布式的版本控制系统，最初由 <strong>Linus Torvalds</strong> 编写，用作Linux内核代码的管理。在推出后，Git在其它项目中也取得了很大成功，尤其是在 <small>Ruby</small> 社区中。
+						 <strong>Labrusca</strong>，全名King.Kilist.Labrusca，真名无法考证。二逼的自由开发者，特征很懒！非常懒！现主攻网络安全方向。
 					</p>
 				</div>
 			</div>
@@ -128,7 +108,7 @@
 <script>
 	$.getJSON("data.json",function(data){
 		new Vue({
-			el: '#example-1',
+			el: '#arl-list',
 			data: data
 		})	
 	});
