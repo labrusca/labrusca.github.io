@@ -15,7 +15,7 @@
 		<div class="col-md-12 column">
 			<div class="page-header">
 				<h1>
-					V0.1.0 <small>我才不会告诉你这里是Labrusca的秘密基地呢！</small>
+					v0.1.1 <small>我才不会告诉你这里是Labrusca的秘密基地呢！</small>
 				</h1>
 			</div>
 			<nav class="navbar navbar-default navbar-static-top" role="navigation">
@@ -52,16 +52,13 @@
 							</ul>
 						</li>
 					</ul>
-					<form class="navbar-form navbar-left" role="search">
+					<form class="navbar-form navbar-right" role="search">
 						<div class="form-group">
 							<input class="form-control" type="text" />
 						</div> <button type="submit" class="btn btn-default">Submit</button>
+						<button type="button" class="btn btn-danger">捐款与支持</button>
 					</form>
-					<ul class="nav navbar-nav navbar-right">
-						<li>
-							 <a href="#">捐款与支持</a>
-						</li>
-					</ul>
+
 				</div>
 			</nav>
 			<div class="jumbotron">
@@ -81,7 +78,7 @@
 					<ul id="arl-list" class="list-group list-unstyled">
 						<li v-for="article in articles">
 							<a href="article.html?time={{ article.time }}&title={{ article.title }}" class="list-group-item">
-								<h2 class="list-group-item-heading">
+								<h2 class="list-group-item-heading text-center">
 									{{ article.title }}
 								</h2>
 								<br>
@@ -94,16 +91,35 @@
 
 				</div>
 				<div class="col-md-4 column">
-					<div class="center-block"><img alt="140x140" src="img/myphoto.jpg" class="img-circle" /></div>
-					<br>
-					<p class="text-center">
-						 <strong>Labrusca</strong>，全名King.Kilist.Labrusca，真名无法考证。二逼的自由开发者，特征很懒！非常懒！现主攻网络安全方向。
-					</p>
+					<div class="panel panel-info">
+						<div class="panel-body">
+							作者简介
+						</div>
+						<div class="panel-footer">
+							<div class="center-block"><img alt="140x140" src="img/myphoto.jpg" class="img-circle" /></div>
+							<br>
+							<p class="text-center">
+								<strong>Labrusca</strong>，全名King.Kilist.Labrusca，真名无法考证。二逼的自由开发者，特征很懒！非常懒！现主攻网络安全方向。
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<footer class="bg-danger navbar-static-bottom">
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span>Copyright &copy; <a href="http://labrusca.github.io/">Labrudca's Blog</a></span> |
+                    <span><a href="http://www.god.gov/" target="_blank">神ICP备30019527号</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
 <script src="js/vue.js"></script>
 <script>
 	$.getJSON("data.json",function(data){
