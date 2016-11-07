@@ -87,7 +87,7 @@
 	  var title=UrlParm.parm("title");
       $.get("articles/" + name + ".md",function(data){
           $("#markedjs").html(marked(data));
-		  $("#atitle").html(title);
+		  $("#atitle").text(title);
       });
   });
 </script>
