@@ -70,7 +70,7 @@
 							<header class="entry-header">
 								<h1 class="entry-title">(>_<)</h1>
 								<div class="entry-meta">
-									<span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">February 2, 2013</time></a></span>
+									<span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">????</time></a></span>
 									<span class="post-author"><a href="#">Labrusca</a></span>
 								</div>
 							</header>
@@ -153,11 +153,12 @@
 		<script src="js/script.js"></script>
 		<script>
 			$(document).ready(function(){
-			var name=UrlParm.parm("time");
+			var pushtime=UrlParm.parm("time");
 			var title=UrlParm.parm("title");
-			$.get("articles/" + name + ".md",function(data){
+			$.get("articles/" + pushtime + ".md",function(data){
 				$(".entry-content").html(marked(data));
 				$(".entry-title").text(title);
+				$(".entry-date").text(pushtime);
 			});
 		});
 		</script>

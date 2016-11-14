@@ -82,7 +82,7 @@
 							<div class="entry-content clearfix">
 								<p>无摘要信息</p>
 								<div class="read-more cl-effect-14">
-									<a href="#" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
+									<a href="single.html?time={{ article.time }}&title={{ article.title }}" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
 								</div>
 							</div>
 						</article>
@@ -91,15 +91,9 @@
 					<aside class="col-md-4">
 						<div class="widget widget-recent-posts">		
 							<h3 class="widget-title">最近文章</h3>		
-							<ul>
-								<li>
-									<a href="#">Adaptive Vs. Responsive Layouts And Optimal Text Readability</a>
-								</li>
-								<li>
-									<a href="#">Web Design is 95% Typography</a>
-								</li>
-								<li>
-									<a href="#">Paper by FiftyThree</a>
+							<ul id="arl-rect">
+								<li v-for="index in 3">
+									<a href="">{{ articles[index].title }}</a>
 								</li>
 							</ul>
 						</div>
@@ -163,10 +157,14 @@
 		<script src="js/vue.js"></script>
 		<script>
 			$.getJSON("data.json",function(data){
-				new Vue({
+				var alist = new Vue({
 					el: '#arl-list',
 					data: data
-				})	
+				});
+				var arect = new Vue({
+					el: '#arl-rect',
+					data: data
+				})
 			});
 		</script>
 	</body>
