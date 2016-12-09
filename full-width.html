@@ -64,10 +64,10 @@
 			<div class="container">
 				<div class="row">
 					<main id="arl-list" class="col-md-12">
-						<article v-for="article in articles" class="post post-{{ index }}">
+						<article v-for="(article,index) in articles" class="post post-{{ index }}">
 							<header class="entry-header">
 								<h1 class="entry-title">
-									<a href="single.html?time={{ article.time }}&title={{ article.title }}">{{ article.title }}</a>
+									<a href="single.html?Aindex={{ index }}">{{ article.title }}</a>
 								</h1>
 								<div class="entry-meta">
 									<span class="post-category"><a href="#">未分类</a></span>
@@ -82,7 +82,7 @@
 							<div class="entry-content clearfix">
 								<p>无摘要信息</p>
 								<div class="read-more cl-effect-14">
-									<a href="#" class="more-link">Continue reading <span class="meta-nav">→</span></a>
+									<a href="single.html?Aindex={{ index }}" class="more-link">Continue reading <span class="meta-nav">→</span></a>
 								</div>
 							</div>
 						</article>

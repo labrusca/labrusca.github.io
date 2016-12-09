@@ -152,15 +152,16 @@
 
 		<script src="js/script.js"></script>
 		<script>
-			$(document).ready(function(){
-			var pushtime=UrlParm.parm("time");
-			var title=UrlParm.parm("title");
-			$.get("articles/" + pushtime + ".md",function(data){
-				$(".entry-content").html(marked(data));
-				$(".entry-title").text(title);
-				$(".entry-date").text(pushtime);
+	      $(document).ready(() => {
+			const i=UrlParm.parm("Aindex");
+			$.getJSON('data.json',(data) => {
+			  $(".entry-title").text(data['articles'][i].title);
+			  $(".entry-date").text(data['articles'][i].time);
+			  $.get(`articles/${data['articles'][i].time}.md`,(data) => {
+			    $(".entry-content").html(marked(data));
+		      });
 			});
-		});
+		  });
 		</script>
 	</body>
 </html>
