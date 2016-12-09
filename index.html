@@ -64,10 +64,10 @@
 			<div class="container">
 				<div class="row">
 					<main id="arl-list" class="col-md-8">
-						<article v-for="article in articles" class="post post-{{ index }}">
+						<article v-for="article in articles" class="post post-{{ $index }}">
 							<header class="entry-header">
 								<h1 class="entry-title">
-									<a href="single.html?time={{ article.time }}&title={{ article.title }}">{{ article.title }}</a>
+									<a href="single.html?Aindex={{ $index }}">{{ article.title }}</a>
 								</h1>
 								<div class="entry-meta">
 									<span class="post-category"><a href="#">未分类</a></span>
@@ -82,7 +82,7 @@
 							<div class="entry-content clearfix">
 								<p>无摘要信息</p>
 								<div class="read-more cl-effect-14">
-									<a href="single.html?time={{ article.time }}&title={{ article.title }}" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
+									<a href="single.html?Aindex={{ $index }}" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
 								</div>
 							</div>
 						</article>
@@ -93,7 +93,8 @@
 							<h3 class="widget-title">最近文章</h3>		
 							<ul id="arl-rect">
 								<li v-for="index in 3">
-									<a href="">{{ articles[index].title }}</a>
+									<!-- index is not $index -->
+									<a href="single.html?Aindex={{ index }}">{{ articles[index].title }}</a>
 								</li>
 							</ul>
 						</div>
@@ -156,12 +157,12 @@
 		<script src="js/script.js"></script>
 		<script src="js/vue.js"></script>
 		<script>
-			$.getJSON("data.json",function(data){
-				var alist = new Vue({
+			$.getJSON("data.json",(data) => {
+				let alist = new Vue({
 					el: '#arl-list',
 					data: data
 				});
-				var arect = new Vue({
+				let arect = new Vue({
 					el: '#arl-rect',
 					data: data
 				})

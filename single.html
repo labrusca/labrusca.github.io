@@ -153,14 +153,14 @@
 		<script src="js/script.js"></script>
 		<script>
 	      $(document).ready(() => {
-			const i=UrlParm.parm("Aindex");
-			$.getJSON('data.json',(data) => {
-			  $(".entry-title").text(data['articles'][i].title);
-			  $(".entry-date").text(data['articles'][i].time);
-			  $.get(`articles/${data['articles'][i].time}.md`,(data) => {
-			    $(".entry-content").html(marked(data));
-		      });
-			});
+			  const i=UrlParm.parm("Aindex");
+			  $.getJSON('data.json',(data) => {
+			      $(".entry-title").text(data['articles'][i].title);
+			      $(".entry-date").text(data['articles'][i].time);
+			      $.get(`articles/${data['articles'][i].time}.md`,(data) => {
+			          $(".entry-content").html(marked(data));
+		          });
+		  	  });
 		  });
 		</script>
 	</body>
