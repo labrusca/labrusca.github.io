@@ -35,17 +35,18 @@ def rebuildjson(dictinfo):
     f.write(wdata)
     f.close()
 
-
 def getinfo(f):
     ''' Get&delete infomation from file '''
     ld = f.readline()
-    info = {"title": None,"tags": None}
-    while not (info['title'] and info['tags']):
+    info = {"title": None,"tags": None,"abstract": None}
+    while not (info['title'] and info['tags'] and info['abstract']):
         if ld.startswith('[TITLE]:'):
             info['title'] = ld.split('[TITLE]')[1][1:-1]
         elif ld.startswith('[TAGS]:'):
             tagsstr = ld.split('[TAGS]')[1][1:-1]
             info['tags'] = tagsstr.split(',')
+        elif ld.startswith('> '):
+            info['abstract'] = ld.split('> ')[1][1:-1]
         ld = f.readline()
     return info
 
