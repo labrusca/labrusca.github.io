@@ -152,6 +152,7 @@
 			  const i=UrlParm.parm("Aindex");
 			  $.getJSON('data.json',(data) => {
 			      $(".entry-title").text(data['articles'][i].title);
+				  $(".post-category").text(data['articles'][i].tags);
 			      $(".entry-date").text(data['articles'][i].time);
 			      $.get(`articles/${data['articles'][i].time}.md`,(data) => {
 			          $(".entry-content").html(marked(data));
