@@ -70,6 +70,7 @@
 							<header class="entry-header">
 								<h1 class="entry-title">(>_<)</h1>
 								<div class="entry-meta">
+									<span class="post-category"><a href="#">{{ article.tags }}</a></span>
 									<span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">????</time></a></span>
 									<span class="post-author"><a href="#">Labrusca</a></span>
 								</div>
@@ -81,21 +82,16 @@
 					</main>
 					<aside class="col-md-4">
 						<div class="widget widget-recent-posts">		
-							<h3 class="widget-title">Recent Posts</h3>		
-							<ul>
-								<li>
-									<a href="#">Adaptive Vs. Responsive Layouts And Optimal Text Readability</a>
-								</li>
-								<li>
-									<a href="#">Web Design is 95% Typography</a>
-								</li>
-								<li>
-									<a href="#">Paper by FiftyThree</a>
+							<h3 class="widget-title">最近文章</h3>		
+							<ul id="arl-rect">
+								<li v-for="index in 3">
+									<!-- index is not $index -->
+									<a href="single.html?Aindex={{ index }}">{{ articles[index].title }}</a>
 								</li>
 							</ul>
 						</div>
 						<div class="widget widget-archives">		
-							<h3 class="widget-title">Archives</h3>		
+							<h3 class="widget-title">分类（未完成）</h3>		
 							<ul>
 								<li>
 									<a href="#">November 2014</a>
@@ -110,7 +106,7 @@
 						</div>
 
 						<div class="widget widget-category">		
-							<h3 class="widget-title">Category</h3>		
+							<h3 class="widget-title">标签（未完成）</h3>		
 							<ul>
 								<li>
 									<a href="#">Web Design</a>
