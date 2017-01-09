@@ -62,36 +62,36 @@
 			</header>
 		</div>
 
-		<div class="content-body">
+		<div id="artbody" class="content-body">
 			<div class="container">
 				<div class="row">
 					<main class="col-md-8">
 						<article class="post">
 							<header class="entry-header">
-								<h1 class="entry-title">(>_<)</h1>
+								<h1 class="entry-title">{{ title }}</h1>
 								<div class="entry-meta">
-									<span class="post-category"><a href="#">{{ article.tags }}</a></span>
-									<span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">????</time></a></span>
-									<span class="post-author"><a href="#">Labrusca</a></span>
+									<span class="post-category"><a href="full-width.html?tag=all">{{ tags }}</a></span>
+									<span class="post-date"><a><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">{{ time }}</time></a></span>
+									<span class="post-author"><a href="about.html">Labrusca</a></span>
 								</div>
 							</header>
 							<div class="entry-content clearfix">
-								Now you see me!you ask who I am?<p>Nice to meet you,I'm <strong>404!</strong>
+								<div class="text-center">Now you see me!you ask who I am?<p>Nice to meet you,I'm <strong>404!</strong></div>
 							</div>
 						</article>
 					</main>
 					<aside class="col-md-4">
 						<div class="widget widget-recent-posts">		
-							<h3 class="widget-title">最近文章</h3>		
+							<h3 class="widget-title">？？</h3>		
 							<ul id="arl-rect">
-								<li v-for="index in 3">
+								<li>
 									<!-- index is not $index -->
-									<a href="single.html?Aindex={{ index }}">{{ articles[index].title }}</a>
+									<a href="＃">占位</a>
 								</li>
 							</ul>
 						</div>
 						<div class="widget widget-archives">		
-							<h3 class="widget-title">分类（未完成）</h3>		
+							<h3 class="widget-title">时间线（未完成）</h3>		
 							<ul>
 								<li>
 									<a href="#">November 2014</a>
@@ -106,16 +106,10 @@
 						</div>
 
 						<div class="widget widget-category">		
-							<h3 class="widget-title">标签（未完成）</h3>		
-							<ul>
+							<h3 class="widget-title">此文章的分类</h3>		
+							<ul v-for="tag in tags">
 								<li>
-									<a href="#">Web Design</a>
-								</li>
-								<li>
-									<a href="#">Web Development</a>
-								</li>
-								<li>
-									<a href="#">SEO</a>
+									<a href="full-width.html?tag={{ tag }}">{{ tag }}</a>
 								</li>
 							</ul>
 						</div>
@@ -127,7 +121,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="copyright">&copy; 2016 Labrusca <a href="http://labrusca.github.io/" target="_blank" title="Light of Seraphim">My Blog</a> - <a href="http://www.god.com/" title="神与我们同在" target="_blank">神与我们同在</a></p>
+						<p class="copyright">&copy; 2016-2017 Labrusca <a href="http://labrusca.github.io/" target="_blank" title="Light of Seraphim">My Blog</a> - <a href="http://www.god.org/" title="愿荣耀归于万有之神我主耶稣基督，因这一切乃是出于圣灵!" target="_blank">以马内利</a></p>
 					</div>
 				</div>
 			</div>
@@ -147,15 +141,18 @@
 		</div>
 
 		<script src="js/script.js"></script>
+		<script src="js/vue.js"></script>
 		<script>
 	      $(document).ready(() => {
 			  const i=UrlParm.parm("Aindex");
 			  $.getJSON('data.json',(data) => {
-			      $(".entry-title").text(data['articles'][i].title);
-				  $(".post-category").text(data['articles'][i].tags);
-			      $(".entry-date").text(data['articles'][i].time);
-			      $.get(`articles/${data['articles'][i].time}.md`,(data) => {
-			          $(".entry-content").html(marked(data));
+				  let artdata = new Vue({
+					  el: '#artbody',
+					  data: data['articles'][i]
+				  });
+
+			      $.get(`articles/${artdata.time}.md`,(content) => {
+			          $(".entry-content").html(marked(content));
 		          });
 		  	  });
 		  });

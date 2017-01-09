@@ -2,38 +2,49 @@
 manage.py [option]
 
 [option]:
-          - new
-          - del [-rf] [file]
-          - push
+          -new
+          -del [-rf] [file]
+          -push
 Use like: "manage.py del 2016-12-24-1400"
 
 Test on python3(fedora 25)
 Author: Labrusca'''
-import sys
+
 import os
 import time
 import json
+from sys import argv
 
 
-def setfile():
+def setfilename():
     ''' Rename the file use datetime '''
     global filetime
     filetime = time.strftime("%Y-%m-%d-%H%M", time.localtime())
     os.rename('./articles/new.md','./articles/%s.md' % filetime)
     print('Renamed new.md to %s.md' % filetime)
 
-def rebuildjson(dictinfo):
+def addtojson(dictinfo):
     ''' Add new data to data.json '''
     dictinfo['time'] = filetime
     f = open('data.json','r+')
-    ogdata = json.load(f)['articles']
-    ogdata.insert(0,dictinfo)
+    try:
+        ogdata = json.load(f)['articles']
+    except e:
+        print(e)
+        return
+    for n in range(0,len(ogdata)):
+        if dictinfo['time'] > ogdata[n]['time']:
+            ogdata.insert(n,dictinfo)
+            break
+        elif n == len(ogdata)-1:
+            ogdata.appent(dictinfo)
     newdata = {"articles": ogdata}
     f.seek(0)
     # Use json.dumps() to format JSON
     wdata = json.dumps(newdata,indent=2)  
     f.write(wdata)
     f.close()
+    print('Add data.json at %s' % time.asctime(time.localtime()))
 
 def getinfo(f):
     ''' Get&delete infomation from file '''
@@ -59,9 +70,9 @@ def pushmd():
         exit(0)
     fileinfo = getinfo(tempfile)
     tempfile.close()
-    setfile()
-    rebuildjson(fileinfo)
-    print('Rebuilt data.json at %s' % time.asctime(time.localtime()))
+    setfilename()
+    addtojson(fileinfo)
+    print('Push done at %s' % time.asctime(time.localtime()))
 
 def deleteblog(filename):
     f = open('data.json','r+')
@@ -80,34 +91,36 @@ def deleteblog(filename):
 
 def updata():
     ''' Updata all markdown file into data.json '''
-    # check if new.md
+    # check if have new.md
     try:
-        setfile()
+        setfilename()
     except FileNotFoundError:
         pass
     mdlist = os.listdir('./articles')
     for mdeach in mdlist:
         f = open(mdeach,'r')
-        rebuildjson(getinfo(f))
+        addtojson(getinfo(f))
         f.close()
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 1:
+    if len(argv) == 1 or argv[1] == '--help':
         print(__doc__)
     else:
-        if sys.argv[1] == 'push':
+        if argv[1] == 'push':
             pushmd()
-        elif sys.argv[1] == 'del':
-            if sys.argv[2] == '-rf':
-                deleteblog(sys.argv[3])
-                os.system("rm ./articles/{0}.md".format(sys.argv[3]))
+        elif argv[1] == 'del':
+            if argv[2] == '-rf':
+                deleteblog(argv[3])
+                os.system("rm ./articles/{0}.md".format(argv[3]))
                 print("The markdown file has been deleted!")
             else:
-                deleteblog(sys.argv[2])
+                deleteblog(argv[2])
 
-        elif sys.argv[1] == 'new':
+        elif argv[1] == 'new':
             open('./articles/new.md','w')
             os.system("vi ./articles/new.md")
-        elif sys.argv[1] == 'updata':
+        elif argv[1] == 'updata':
             updata()
+        else:
+            print("Please use \'--help\'for usage.")

@@ -60,7 +60,7 @@
 			</header>
 		</div>
 
-		<div class="content-body">
+		<div id="cbody" class="content-body">
 			<div class="container">
 				<div class="row">
 					<main id="arl-list" class="col-md-8">
@@ -70,11 +70,11 @@
 									<a href="single.html?Aindex={{ $index }}">{{ article.title }}</a>
 								</h1>
 								<div class="entry-meta">
-									<span class="post-category"><a href="#">{{ article.tags }}</a></span>
+									<span class="post-category"><a href="full-width.html?tag=all">{{ article.tags }}</a></span>
 			
-									<span class="post-date"><a href="#"><time class="entry-date" datetime="">{{ article.time }}</time></a></span>
+									<span class="post-date"><a><time class="entry-date" datetime="">{{ article.time }}</time></a></span>
 			
-									<span class="post-author"><a href="#">Labrusca</a></span>
+									<span class="post-author"><a href="about.html">Labrusca</a></span>
 			
 									<span class="comments-link disable"><a href="#">评论系统未开放</a></span>
 								</div>
@@ -88,10 +88,10 @@
 						</article>
 
 					</main>
-					<aside class="col-md-4">
+					<aside id="asidemain" class="col-md-4">
 						<div class="widget widget-recent-posts">		
 							<h3 class="widget-title">最近文章</h3>		
-							<ul id="arl-rect">
+							<ul>
 								<li v-for="index in 3">
 									<!-- index is not $index -->
 									<a href="single.html?Aindex={{ index }}">{{ articles[index].title }}</a>
@@ -99,7 +99,7 @@
 							</ul>
 						</div>
 						<div class="widget widget-archives">		
-							<h3 class="widget-title">分类（未完成）</h3>		
+							<h3 class="widget-title">时间线（未完成）</h3>	
 							<ul>
 								<li>
 									<a href="#">November 2014</a>
@@ -114,17 +114,13 @@
 						</div>
 
 						<div class="widget widget-category">		
-							<h3 class="widget-title">标签（未完成）</h3>		
-							<ul>
-								<li>
-									<a href="#">Web Design</a>
-								</li>
-								<li>
-									<a href="#">Web Development</a>
-								</li>
-								<li>
-									<a href="#">SEO</a>
-								</li>
+							<h3 class="widget-title">文章分类</h3>		
+							<ul v-for="article in articles" >
+								<div v-for="tag in article.tags" >
+									<li>
+										<a href="full-width.html?tag={{ tag }}">{{ tag }}</a>
+									</li>
+								</div>
 							</ul>
 						</div>
 					</aside>
@@ -135,7 +131,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="copyright">&copy; 2016 Labrusca <a href="http://labrusca.github.io/" target="_blank" title="Light of Seraphim">My Blog</a> - <a href="http://www.god.com/" title="神与我们同在" target="_blank">神与我们同在</a></p>
+						<p class="copyright">&copy; 2016-2017 Labrusca <a href="http://labrusca.github.io/" target="_blank" title="Light of Seraphim">My Blog</a> - <a href="http://www.god.org/" title="愿荣耀归于万有之神我主耶稣基督，因这一切乃是出于圣灵!" target="_blank">以马内利</a></p>
 					</div>
 				</div>
 			</div>
@@ -159,13 +155,9 @@
 		<script>
 			$.getJSON("data.json",(data) => {
 				let alist = new Vue({
-					el: '#arl-list',
+					el: '#cbody',
 					data: data
 				});
-				let arect = new Vue({
-					el: '#arl-rect',
-					data: data
-				})
 			});
 		</script>
 	</body>
