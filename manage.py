@@ -1,12 +1,5 @@
 '''
-manage.py [option]
-
-[option]:
-          -new
-          -del [-rf] [file]
-          -push
-Use like: "manage.py del 2016-12-24-1400"
-
+manage.py 
 Test on python3(fedora 25)
 Author: Labrusca'''
 
@@ -61,7 +54,7 @@ def getinfo(f):
         ld = f.readline()
     return info
 
-def pushmd():
+def postmd():
     ''' Add new markdown blog file '''
     try:
         tempfile = open('./articles/new.md','r')
@@ -104,23 +97,11 @@ def updata():
 
 
 if __name__ == "__main__":
-    if len(argv) == 1 or argv[1] == '--help':
-        print(__doc__)
-    else:
-        if argv[1] == 'push':
-            pushmd()
-        elif argv[1] == 'del':
-            if argv[2] == '-rf':
-                deleteblog(argv[3])
-                os.system("rm ./articles/{0}.md".format(argv[3]))
-                print("The markdown file has been deleted!")
-            else:
-                deleteblog(argv[2])
-
-        elif argv[1] == 'new':
-            open('./articles/new.md','w')
-            os.system("vi ./articles/new.md")
-        elif argv[1] == 'updata':
-            updata()
-        else:
-            print("Please use \'--help\'for usage.")
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('new')
+    parser.add_argument('post')
+    args = parser.parse_args()
+    if args.post:
+        print("testing passed.")
+        print(args.post)
