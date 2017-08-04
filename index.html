@@ -62,7 +62,7 @@
 
 		<div id="cbody" class="content-body">
 			<div class="container">
-				<div class="row">
+				<div class="row" v-cloak>
 					<main id="arl-list" class="col-md-8">
 						<article v-for="article in articles" class="post post-{{ $index }}">
 							<header class="entry-header">
@@ -116,7 +116,7 @@
 						<div class="widget widget-category">		
 							<h3 class="widget-title">文章分类</h3>		
 							<ul v-for="article in articles" >
-								<div v-for="tag in article.tags" >
+								<div v-for="tag in article.tags">
 									<li>
 										<a href="full-width.html?tag={{ tag }}">{{ tag }}</a>
 									</li>

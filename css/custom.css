@@ -33,6 +33,10 @@
  * 2.0 - General Elements
  */
 
+[v-cloak] {
+	display: none;
+}
+
 * {outline: none;}
 
 h1, 
