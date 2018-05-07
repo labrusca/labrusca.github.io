@@ -14,10 +14,13 @@
 	    <link rel="stylesheet" href="css/custom.css">
 
 	    <!-- js -->
-	    <script src="js/jquery-2.1.3.min.js"></script>
+	    <script src="js/jquery-1.8.3.min.js"></script>
+	    <script src="js/jquery.jfeed.pack.js"></script>
 	    <script src="js/bootstrap.min.js"></script>
 	    <script src="js/pace.min.js"></script>
-	    <script src="js/modernizr.custom.js"></script>
+		<script src="js/modernizr.custom.js"></script>
+		<script src="js/marked.js"></script>
+		<link href="css/layx.css" rel="stylesheet" />
 	</head>
 
 	<body>
@@ -64,39 +67,47 @@
 			<div class="container">
 				<div class="row" v-cloak>
 					<main id="arl-list" class="col-md-8">
-						<article v-for="article in articles" class="post post-{{ $index }}">
-							<header class="entry-header">
-								<h1 class="entry-title">
-									<a href="single.html?Aindex={{ $index }}">{{ article.title }}</a>
-								</h1>
-								<div class="entry-meta">
-									<span class="post-category"><a href="full-width.html?tag=all">{{ article.tags }}</a></span>
-			
-									<span class="post-date"><a><time class="entry-date" datetime="">{{ article.time }}</time></a></span>
-			
-									<span class="post-author"><a href="about.html">Labrusca</a></span>
-			
-									<span class="comments-link disable"><a href="#">评论系统未开放</a></span>
-								</div>
-							</header>
-							<div class="entry-content clearfix">
-								<p>{{ article.abstract }}</p>
-								<div class="read-more cl-effect-14">
-									<a href="single.html?Aindex={{ $index }}" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
-								</div>
-							</div>
-						</article>
+						<script id="tpl" type="text/html">
+							<%for (var i = 0; i < feed.items.length; i++) {%>
+								<article  class="post post-<%:=i%>">
+									<header class="entry-header">
+										<h1 class="entry-title">
+											<a href="<%:=feed.items[i].link%>"><%:=feed.items[i].title%></a>
+										</h1>
+										<div class="entry-meta">
+											<span class="post-category"><a href="full-width.html?tag=all">None</a></span>
+					
+											<span class="post-date"><a><time class="entry-date" datetime=""><%:=feed.items[i].pubDate%></time></a></span>
+					
+											<span class="post-author"><a href="about.html">Labrusca</a></span>
+					
+											<span class="comments-link disable"><a href="#">评论系统未开放</a></span>
+										</div>
+									</header>
+									<div class="entry-content clearfix">
+										<p><%:=feed.items[i].description%></p>
+										<div class="read-more cl-effect-14">
+											<a href="<%:=feed.items[i].link%>" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
+										</div>
+									</div>
+								</article>
+							<%}%>
+						</script>
 
 					</main>
 					<aside id="asidemain" class="col-md-4">
 						<div class="widget widget-recent-posts">		
-							<h3 class="widget-title">最近文章</h3>		
-							<ul>
-								<li v-for="index in 3">
-									<!-- index is not $index -->
-									<a href="single.html?Aindex={{ index }}">{{ articles[index].title }}</a>
-								</li>
-							</ul>
+							<h3 class="widget-title">最近文章</h3>
+							<script id="tpl" type="text/html">		
+								<ul>
+									<%for (var i = 0; i < 3; i++) {%>
+										<li>
+											<!-- index is not $index -->
+											<a href="<%:=feed.items[i].link%>"><%:=feed.items[i].title%></a>
+										</li>
+									<%}%>
+								</ul>
+							</script>
 						</div>
 						<div class="widget widget-archives">		
 							<h3 class="widget-title">时间线（未完成）</h3>	
@@ -118,7 +129,7 @@
 							<ul v-for="article in articles" >
 								<div v-for="tag in article.tags">
 									<li>
-										<a href="full-width.html?tag={{ tag }}">{{ tag }}</a>
+										<a href="full-width.html?type=abstract&value={{ tag }}">{{ tag }}</a>
 									</li>
 								</div>
 							</ul>
@@ -131,7 +142,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="copyright">&copy; 2016-2017 Labrusca <a href="http://labrusca.github.io/" target="_blank" title="Light of Seraphim">My Blog</a> - <a href="http://www.god.org/" title="愿荣耀归于万有之神我主耶稣基督，因这一切乃是出于圣灵!" target="_blank">以马内利</a></p>
+						<p class="copyright">&copy; 2016-2018 Labrusca <a href="http://labrusca.github.io/" target="_blank" title="Light of Seraphim">My Blog</a> - <a href="http://www.god.org/" title="愿荣耀归于万有之神我主耶稣基督，因这一切乃是出于圣灵!" target="_blank">以马内利</a></p>
 					</div>
 				</div>
 			</div>
@@ -150,14 +161,31 @@
 			</nav>
 		</div>
 
+		<script></script>
 		<script src="js/script.js"></script>
-		<script src="js/vue.js"></script>
+		<script src="js/template.js"></script>
+		<script src="js/layx.js" type="text/javascript"></script>
 		<script>
-			$.getJSON("data.json",(data) => {
-				let alist = new Vue({
-					el: '#cbody',
-					data: data
-				});
+			$(document).ready(function() {
+				jQuery.getFeed({
+        			url: 'rss.xml',
+        			success: function(feed) {
+        				console.log(feed);
+        				var tpl = document.getElementById('tpl').innerHTML;
+        				template(tpl, feed.items);
+        			}
+        		});
+
+				$.get('articles/admin.md',(mdtext) => {
+					layx.open({
+						id: 'demo-center',
+						title: '网站建设改版中',
+						shadable: true,
+						loaddingText:'亲，正在加载中哦，请稍后...', 
+						closable: false,
+						content: marked(mdtext)  // iframe为类型，预留字段，后续将有其他类型
+            		});
+		        });
 			});
 		</script>
 	</body>
