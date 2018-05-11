@@ -32,7 +32,7 @@ class BlogFeeds:
 
         self.feed = Feed(
             title = "Light of Seraphim",
-            link = "https://www.labrusca.net/rss",
+            link = "https://labrusca.net/rss.xml",
             description = "This is a blog of labrusca",
             language = "zh-CN",
             lastBuildDate = datetime.datetime.now(),
@@ -59,11 +59,11 @@ class BlogFeeds:
         fileobj.close()
         return Item(
                     title = fileinfo['title'],
-                    link = f"https://www.labrusca.net/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3]}{filedate[4][:-3]}", 
+                    link = f"https://labrusca.net/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3]}{filedate[4][:-3]}", 
                     #tags = fileinfo['tags'], 
                     description = fileinfo['description'],
                     author = "Labrusca",
-                    guid = Guid(f"https://www.labrusca.net/articles/{filename}"),
+                    guid = Guid(f"https://labrusca.net/articles/{filename}"),
                     pubDate = datetime.datetime(int(filedate[0]), int(filedate[1]), int(filedate[2]), int(filedate[3]), int(filedate[4][:-3])))
 
     def save_rss_file(self):
