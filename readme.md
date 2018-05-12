@@ -8,5 +8,9 @@ Create by Labrusca
 #### 4.Then it will re-creat rss.xml for your articles
 #### 5. Push the static blog to your server
 #### 6. Enjoy blogging
+------------------------
+Template by [jsrender](https://github.com/BorisMoore/jsrender)
+Router by [director](https://github.com/flatiron/director)
+Markdown parser by [marked](https://github.com/markedjs/marked)
 
 If you have any question,please [mail me](mailto:labrusca#live.com)
