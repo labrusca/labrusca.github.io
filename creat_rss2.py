@@ -12,7 +12,7 @@ from rfeed import *
 def setfilename():
     ''' Rename the file use datetime '''
     global filetime
-    filetime = time.strftime("%Y-%m-%d-%H-%M")
+    filetime = time.strftime("%Y-%m-%d-%H%M")
     os.rename('./articles/new.md','./articles/%s.md' % filetime)
     print('Renamed new.md to %s.md' % filetime)
 
@@ -28,7 +28,8 @@ class BlogFeeds:
         self.items = []
         mdlist = os.listdir('./articles')
         for mdeach in mdlist:
-            self.items.append(self.get_info(mdeach))
+            if mdeach != 'new.md':
+                self.items.append(self.get_info(mdeach))
 
         self.feed = Feed(
             title = "Light of Seraphim",

@@ -1,9 +1,9 @@
 User-agent: Sosospider
-allow: /#/blog/
+allow: /#/blo
 User-agent: YodaoBot
 Crawl-delay: 5
-Disallow: /js/
-Disallow: /articles/
-Disallow: /css/
-Disallow: /img/
-Disallow: /fonts/
+Disallow: /j
+Disallow: /art
+Disallow: /cs
+Disallow: /im
+Disallow: /fon
