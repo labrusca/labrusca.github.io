@@ -59,12 +59,12 @@ class BlogFeeds:
         fileobj.close()
         return Item(
                     title = fileinfo['title'],
-                    link = f"https://labrusca.net/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3]}{filedate[4][:-3]}", 
+                    link = f"https://labrusca.net/#/blog/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3][:2]}{filedate[3][2:-3]}", 
                     #tags = fileinfo['tags'], 
                     description = fileinfo['description'],
                     author = "Labrusca",
                     guid = Guid(f"https://labrusca.net/articles/{filename}"),
-                    pubDate = datetime.datetime(int(filedate[0]), int(filedate[1]), int(filedate[2]), int(filedate[3]), int(filedate[4][:-3])))
+                    pubDate = datetime.datetime(int(filedate[0]), int(filedate[1]), int(filedate[2]), int(filedate[3][:2]), int(filedate[3][2:-3])))
 
     def save_rss_file(self):
         f = open('rss.xml','w',encoding='utf-8')

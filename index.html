@@ -19,9 +19,9 @@
 	    <script src="js/bootstrap.min.js"></script>
 	    <script src="js/pace.min.js"></script>
 		<script src="js/modernizr.custom.js"></script>
+		<script src="js/director.min.js"></script>
 		<script src="js/marked.js"></script>
 		<script src="js/jsrender.js"></script>	
-		<link href="css/layx.css" rel="stylesheet" />
 	</head>
 
 	<body>
@@ -43,11 +43,11 @@
 
 							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
   								<ul class="nav navbar-nav navbar-right">
-    								<li class="cl-effect-11"><a href="index.html" data-hover="Home">Home</a></li>
-    								<li class="cl-effect-11"><a href="full-width.html" data-hover="Blog">Blog</a></li>
-    								<li class="cl-effect-11"><a href="about.html" data-hover="About">About</a></li>
-									<li class="cl-effect-11"><a href="contact.html" data-hover="Contact">Contact</a></li>
-									<li class="cl-effect-11"><a id="rss-link" href="/rss.xml"><span id="search-icon" class="ion-social-rss"></span></a></li>
+    								<li class="cl-effect-11"><a href="/" data-hover="Home">Home</a></li>
+    								<li class="cl-effect-11"><a href="#/blog" data-hover="Blog">Blog</a></li>
+    								<li class="cl-effect-11"><a href="#/about" data-hover="About">About</a></li>
+									<li class="cl-effect-11"><a href="#/contact" data-hover="Contact">Contact</a></li>
+									<li class="cl-effect-11"><a id="rss-link" href="//labrusca.net/rss.xml"><span id="search-icon" class="ion-social-rss"></span></a></li>
   								</ul>
 							</div><!-- /.navbar-collapse -->
 						</nav>
@@ -66,80 +66,7 @@
 		</div>
 
 		<div id="cbody" class="content-body">
-			<div class="container">
-				<div class="row">
-					<main id="arl-list" class="col-md-8">
-						<script id="arl-tpl" type="text/html">
-							{{!-- 反排序,最新文章在最前面 --}}
-							{{for items.reverse()}}
-								<article  class="post post-test">
-									<header class="entry-header">
-										<h1 class="entry-title">
-											<a href="{{:link}}">{{:title}}</a>
-										</h1>
-										<div class="entry-meta">
-											<span class="post-category"><a href="full-width.html?tag=all">Tag</a></span>
-					
-											<span class="post-date"><a><time class="entry-date" datetime="">{{:updated}}</time></a></span>
-					
-											<span class="post-author"><a href="about.html">Labrusca</a></span>
-					
-											<span class="comments-link disable"><a href="#">评论系统未开放</a></span>
-										</div>
-									</header>
-									<div class="entry-content clearfix">
-										<p>{{:description}}</p>
-										<div class="read-more cl-effect-14">
-											<a href="{{:link}}" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
-										</div>
-									</div>
-								</article>
-							{{/for}}
-						</script>
 
-					</main>
-					<aside id="asidemain" class="col-md-4">
-							<div class="alert alert-warning">网站改版建设中...几乎所有链接都不可用</div>					
-							<div id="rent-list" class="widget widget-recent-posts">		
-							<script id="rent-tpl" type="text/html">		
-								<h3 class="widget-title">最近文章</h3>
-								<ul>
-									{{for items[0]}}
-										<li>
-											<a href="{{:link}}" title="{{:updated}}">{{:title}}</a>
-										</li>
-									{{/for}}
-								</ul>
-							</script>
-						</div>
-						<div class="widget widget-archives">		
-							<h3 class="widget-title">时间线（未完成）</h3>	
-							<ul>
-								<li>
-									<a href="#">November 2014</a>
-								</li>
-								<li>
-									<a href="#">September 2014</a>
-								</li>
-								<li>
-									<a href="#">January 2013</a>
-								</li>
-							</ul>
-						</div>
-
-						<div class="widget widget-category">		
-							<h3 class="widget-title">文章分类</h3>		
-							<ul>
-								<div>
-									<li>
-										<a href="full-width.html?type=abstract&value={{ tag }}">{{ tag }}</a>
-									</li>
-								</div>
-							</ul>
-						</div>
-					</aside>
-				</div>
-			</div>
 		</div>
 		<footer id="site-footer">
 			<div class="container">
@@ -156,33 +83,16 @@
 			<button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
 			<nav>
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a href="full-width.html">Blog</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="#/blog">Blog</a></li>
+					<li><a href="#/about">About</a></li>
+					<li><a href="#/contact">Contact</a></li>
+					<li><a href="//labrusca.net/rss.xml"><span id="search-icon" class="ion-social-rss"></span></a></li>
 				</ul>
 			</nav>
 		</div>
 
-		<script></script>
-		<script src="js/script.js"></script>
-		<script src="js/layx.js" type="text/javascript"></script>
-		<script>
-			jQuery.getFeed({
-        		url: 'rss.xml',
-        		success: function(feed) {
-					console.log(feed);
-        			var tmpl = $.templates("#arl-tpl");
-					var rsl = tmpl.render(feed);
-					$("#arl-list").html(rsl);
-					var tmpl2 = $.templates("#rent-tpl");
-					var rsl2 = tmpl2.render(feed);
-					$("#rent-list").html(rsl2);
-				}
-        	});
-			$(".close").click(function(){
-				$("#myAlert").alert();
-			});
-		</script>
+		<script src="js/search.js"></script>
+		<script src="js/routehandle.js"></script>
 	</body>
 </html>
