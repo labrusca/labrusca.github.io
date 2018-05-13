@@ -1,7 +1,7 @@
 ## This is my own Blog named LIGHT OF SERAPHIM
-
-Create by Labrusca
 ====================
+##Create by Labrusca
+
 ### if you want to write a page of blog:
 #### 1. Create Markdown file in ./articles,named "new.md"
 #### 2. Run "creat_rss2.py" to for usage: ``` python3 creat_rss2.py```

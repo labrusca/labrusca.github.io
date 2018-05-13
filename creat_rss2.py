@@ -6,25 +6,32 @@ Author: Labrusca
 
 import datetime
 import os
+import sys
 import time
 from rfeed import *
 
-def setfilename():
+def set_filename():
     ''' Rename the file use datetime '''
     global filetime
     filetime = time.strftime("%Y-%m-%d-%H%M")
     os.rename('./articles/new.md','./articles/%s.md' % filetime)
     print('Renamed new.md to %s.md' % filetime)
 
+def creat_article():
+    with open('./articles/new.md','w') as new:
+        new.write('[TITLE]: \n')
+        new.write('[TAGS]: \n\n')
+        new.write('> This is description.\n\n')
+    print("The file: new.md has been Created!")
 
 class BlogFeeds:
     def __init__(self):
         ''' Updata all markdown file into rss.xml '''
         # check if have new.md
         try:
-            setfilename()
+            set_filename()
         except FileNotFoundError:
-            pass
+            print('No new.md file,pass...')
         self.items = []
         mdlist = os.listdir('./articles')
         for mdeach in mdlist:
@@ -55,7 +62,7 @@ class BlogFeeds:
                 tagsstr = ld.split('[TAGS]')[1][1:-1]
                 fileinfo['tags'] = tagsstr.split(',')
             elif ld.startswith('> '):
-                fileinfo['description'] = ld.split('> ')[1][1:-1]
+                fileinfo['description'] = ld.split('> ')[1][:-1]
             ld = fileobj.readline()
         fileobj.close()
         return Item(
@@ -73,6 +80,12 @@ class BlogFeeds:
         f.close()
 
 if __name__ == "__main__":
-    pub = BlogFeeds()
-    #pub.show_rssxml()
-    pub.save_rss_file()
+    if len(sys.argv) == 2 :
+        if sys.argv[1] == 'build':
+            pub = BlogFeeds()
+            #pub.show_rssxml()
+            pub.save_rss_file()
+        elif sys.argv[1] == 'new':
+            creat_article()
+    else:
+        print('Nothing happened.')
