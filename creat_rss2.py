@@ -1,5 +1,5 @@
 '''
-manage.py 
+creat_rss2.py 
 Test on python3(windows 10)
 Author: Labrusca
 '''

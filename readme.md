@@ -1,17 +1,18 @@
 ## This is my own Blog named LIGHT OF SERAPHIM
 ====================
-##Create by Labrusca
+
+##### Create by Labrusca
 
 ### if you want to write a page of blog:
-#### 1. Create Markdown file in ./articles,named "new.md"
-#### 2. Run "creat_rss2.py" to for usage: ``` python3 creat_rss2.py```
-#### 4.Then it will re-creat rss.xml for your articles
-#### 5. Push the static blog to your server
-#### 6. Enjoy blogging
+#### 1. Run  ``` python3 creat_rss2.py new``` to creat a markdown file in ./articles
+#### 2. Write your article into new.md
+#### 3. Run  ``` python3 creat_rss2.py build``` to rewrite rss.xml
+#### 4. Push the static blog to your server
+#### 5. Enjoy blogging
 ------------------------
 - Template by **[jsrender](https://github.com/BorisMoore/jsrender)**
 - Router by **[director](https://github.com/flatiron/director)**
 - Markdown parser by **[marked](https://github.com/markedjs/marked)**
 
 
-If you have any question,please [mail me](mailto:labrusca#live.com)
+If you have any question,please [mail me](mailto:labrusca@live.com)
