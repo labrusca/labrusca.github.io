@@ -8,7 +8,6 @@ $().ready(() => {
         success: (feed) => {
             //console.log(feed);
             const router = Router(routes);
-            router.configure({ html5history : true});
             router.init();
             const tmpl = $.templates("#arl-tpl");
             const rsl = tmpl.render(feed);
