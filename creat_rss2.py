@@ -36,13 +36,15 @@ class BlogFeeds:
         mdlist = os.listdir('./articles')
         for mdeach in mdlist:
             if mdeach != 'new.md':
-                self.items.append(self.get_info(mdeach))
+                self.items.insert(0,self.get_info(mdeach))
 
         self.feed = Feed(
             title = "Light of Seraphim",
             link = "https://labrusca.net/rss.xml",
             description = "This is a blog of labrusca",
             language = "zh-CN",
+            managingEditor = "labrusca@live.com",
+            webMaster = "labrusca@live.com",
             lastBuildDate = datetime.datetime.now(),
             items = self.items)
 
@@ -68,9 +70,9 @@ class BlogFeeds:
         return Item(
                     title = fileinfo['title'],
                     link = f"https://labrusca.net/#/blog/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3][:2]}{filedate[3][2:-3]}", 
-                    #tags = fileinfo['tags'], 
+                    categories = fileinfo['tags'], 
                     description = fileinfo['description'],
-                    author = "Labrusca",
+                    author = "labrusca@live.com",
                     guid = Guid(f"https://labrusca.net/articles/{filename}"),
                     pubDate = datetime.datetime(int(filedate[0]), int(filedate[1]), int(filedate[2]), int(filedate[3][:2]), int(filedate[3][2:-3])))
 
