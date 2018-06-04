@@ -1,4 +1,4 @@
-function getHTMLrender (htmlfile) {
+function getHTMLrender(htmlfile) {
     $("#cbody").load(htmlfile)
 }
 $().ready(() => {
@@ -29,16 +29,16 @@ const renderContact = () => {
 
 
 let routes = {
-    '/about' : renderAbout,
-    '/contact' : renderContact,
-    '/blog' : {
-        '/:year' : {
-            '/:month' : {
-                '/:day' : {
-                    '/:time' : {
-                        on: (year,month,day,time) => {
+    '/about': renderAbout,
+    '/contact': renderContact,
+    '/blog': {
+        '/:year': {
+            '/:month': {
+                '/:day': {
+                    '/:time': {
+                        on: (year, month, day, time) => {
                             let MDfilename = filterXSS(`${year}-${month}-${day}-${time}.md`)
-                            $.get(`articles/${MDfilename}`,context => {
+                            $.get(`articles/${MDfilename}`, context => {
                                 $("#cbody").html(`<div class="container">
                                                     <div class="row">
                                                         <main id="arl-list" class="col-md-12">
@@ -58,4 +58,3 @@ let routes = {
 
     }
 };
-
