@@ -50,10 +50,12 @@ $().ready(() => {
 })
 
 const renderAbout = () => {
+    $("#cbody").animateCss('fadeIn');
     getHTMLrender("about.html")
 }
 
 const renderContact = () => {
+    $("#cbody").animateCss('bounceIn');
     getHTMLrender("contact.html")
 }
 
