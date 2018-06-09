@@ -1,6 +1,34 @@
 function getHTMLrender(htmlfile) {
     $("#cbody").load(htmlfile)
 }
+
+$.fn.extend({
+    animateCss: function(animationName, callback) {
+      var animationEnd = (function(el) {
+        var animations = {
+          animation: 'animationend',
+          OAnimation: 'oAnimationEnd',
+          MozAnimation: 'mozAnimationEnd',
+          WebkitAnimation: 'webkitAnimationEnd',
+        };
+  
+        for (var t in animations) {
+          if (el.style[t] !== undefined) {
+            return animations[t];
+          }
+        }
+      })(document.createElement('div'));
+  
+      this.addClass('animated ' + animationName).one(animationEnd, function() {
+        $(this).removeClass('animated ' + animationName);
+  
+        if (typeof callback === 'function') callback();
+      });
+  
+      return this;
+    },
+  });
+
 $().ready(() => {
     getHTMLrender("main.html")
     jQuery.getFeed({
@@ -11,9 +39,11 @@ $().ready(() => {
             router.init();
             const tmpl = $.templates("#arl-tpl");
             const rsl = tmpl.render(feed);
+            $("#arl-list").animateCss('fadeIn');
             $("#arl-list").html(rsl);
             const tmpl2 = $.templates("#rent-tpl");
             const rsl2 = tmpl2.render(feed);
+            $("#rent-list").animateCss('fadeInRight');
             $("#rent-list").html(rsl2);
         }
     })
@@ -39,6 +69,7 @@ let routes = {
                         on: (year, month, day, time) => {
                             let MDfilename = filterXSS(`${year}-${month}-${day}-${time}.md`)
                             $.get(`articles/${MDfilename}`, context => {
+                                $("#cbody").animateCss('fadeIn');
                                 $("#cbody").html(`<div class="container">
                                                     <div class="row">
                                                         <main id="arl-list" class="col-md-12">
