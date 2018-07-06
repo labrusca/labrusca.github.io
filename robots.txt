@@ -6,4 +6,4 @@ Disallow: /j
 Disallow: /art
 Disallow: /cs
 Disallow: /im
-Disallow: /fon
+Disallow: /fo

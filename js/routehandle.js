@@ -30,7 +30,7 @@ $.fn.extend({
   });
 
 $().ready(() => {
-    getHTMLrender("main.html")
+    getHTMLrender("template/main.html")
     jQuery.getFeed({
         url: 'rss.xml',
         success: (feed) => {
@@ -51,12 +51,12 @@ $().ready(() => {
 
 const renderAbout = () => {
     $("#cbody").animateCss('fadeIn');
-    getHTMLrender("about.html")
+    getHTMLrender("template/about.html")
 }
 
 const renderContact = () => {
     $("#cbody").animateCss('bounceIn');
-    getHTMLrender("contact.html")
+    getHTMLrender("template/contact.html")
 }
 
 
@@ -75,13 +75,13 @@ let routes = {
                                 $("#cbody").html(`<div class="container">
                                                     <div class="row">
                                                         <main id="arl-list" class="col-md-12">
+                                                            <div><h1 class="text-center">${context.split(/\[[A-Z]+\]:/)[1]}</h3></div>
+                                                            <hr>
                                                             ${marked(context)}
                                                         </main>
-                                                        <br />
-                                                        <a rel="license" class="text-center" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />本<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">作品</span>由<a xmlns:cc="http://creativecommons.org/ns#" href="https://labrusca.net/" property="cc:attributionName" rel="cc:attributionURL">labrusca</a>采用<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可。<br />本许可协议授权之外的使用权限可以从 <a xmlns:cc="http://creativecommons.org/ns#" href="https://labrusca.net/#/contact" rel="cc:morePermissions">https://labrusca.net/#/contact</a> 处获得。
                                                         <button id="return" type="button" onClick="location.href='/'" class="btn btn-default btn-lg btn-block">返回</button>
-                                                        </div>
-                                                </div>`)
+                                                    </div>
+                                                  </div>`)
                             })
                         }
                     }
@@ -89,5 +89,6 @@ let routes = {
             }
         }
 
-    }
+    },
+    '/admin': () => {alert('FckU')}
 };
