@@ -71,11 +71,13 @@ let routes = {
                         on: (year, month, day, time) => {
                             let MDfilename = filterXSS(`${year}-${month}-${day}-${time}.md`)
                             $.get(`articles/${MDfilename}`, context => {
+                                let title = context.split(/\[[A-Z]+\]:/)[1]
                                 $("#cbody").animateCss('fadeIn');
+                                $("title").text(`${filterXSS(title)} - Labrusca's Blog`)
                                 $("#cbody").html(`<div class="container">
                                                     <div class="row">
                                                         <main id="arl-list" class="col-md-12">
-                                                            <div><h1 class="text-center">${context.split(/\[[A-Z]+\]:/)[1]}</h3></div>
+                                                            <div><h1 class="text-center">${filterXSS(title)}</h3></div>
                                                             <hr>
                                                             ${marked(context)}
                                                         </main>
