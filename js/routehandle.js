@@ -44,6 +44,8 @@ $().ready(() => {
             const tmpl2 = $.templates("#rent-tpl");
             const rsl2 = tmpl2.render(feed);
             $("#rent-list").animateCss('fadeInRight');
+            $("#timeline").animateCss('fadeInRight');
+            $("#tag").animateCss('fadeInRight');
             $("#rent-list").html(rsl2);
         }
     })
