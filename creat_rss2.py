@@ -15,7 +15,7 @@ def set_filename():
     global filetime
     filetime = time.strftime("%Y-%m-%d-%H%M")
     os.rename('./articles/new.md','./articles/%s.md' % filetime)
-    print('Renamed new.md to %s.md' % filetime)
+    print('Renamed new.md as %s.md' % filetime)
 
 def creat_article():
     with open('./articles/new.md','w') as new:
@@ -80,6 +80,7 @@ class BlogFeeds:
         f = open('rss.xml','w',encoding='utf-8')
         f.write(self.feed.rss())
         f.close()
+        print('Rewrite: rss.xml\n')
 
 if __name__ == "__main__":
     if len(sys.argv) == 2 :
