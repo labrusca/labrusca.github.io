@@ -28,19 +28,13 @@
 					</article>
 				{{/each}}
 			</script>
-
+			<div id="pagination"></div>
 		</main>
 		<aside id="asidemain" class="col-md-4">
 				<div id="rent-list" class="widget widget-recent-posts">		
 				<script id="rent-tpl" type="text/html">		
 					<h3 class="widget-title">最近文章</h3>
-					<ul>
-						{{#each items.[0]}}
-							<li>
-								<a href="{{link}}" title="{{updated}}">{{title}}</a>
-							</li>
-						{{/each}}
-					</ul>
+						{{{rent items}}}
 				</script>
 			</div>
 			<div id="timeline" class="widget widget-archives">		

@@ -1,41 +1,51 @@
 function getHTMLrender(htmlfile) {
-    $.get(htmlfile, function(result){
+    $.get(htmlfile, result => {
         $("#cbody").html(result)
     })
 }
 
-function rendertmpl(id,data) {
+function rendertmpl(id, data) {
     const source = $(id).html();
     const tmpl = Handlebars.compile(source);
     return tmpl(data);
 }
 
-$.fn.extend({
-    animateCss: function(animationName, callback) {
-      var animationEnd = (function(el) {
-        var animations = {
-          animation: 'animationend',
-          OAnimation: 'oAnimationEnd',
-          MozAnimation: 'mozAnimationEnd',
-          WebkitAnimation: 'webkitAnimationEnd',
-        };
+Handlebars.registerHelper('rent', function(context, options) {
+    var ret = "<ul>";
   
-        for (var t in animations) {
-          if (el.style[t] !== undefined) {
-            return animations[t];
-          }
-        }
-      })(document.createElement('div'));
+    for(var i=0; i<3; i++) {
+      ret = ret + `<li><a href="${context[i].link}" title="${context[i].updated}">${context[i].title}</a></li>`;
+    }
   
-      this.addClass('animated ' + animationName).one(animationEnd, function() {
-        $(this).removeClass('animated ' + animationName);
-  
-        if (typeof callback === 'function') callback();
-      });
-  
-      return this;
-    },
+    return ret + "</ul>";
   });
+
+$.fn.extend({
+    animateCss: function (animationName, callback) {
+        var animationEnd = (function (el) {
+            var animations = {
+                animation: 'animationend',
+                OAnimation: 'oAnimationEnd',
+                MozAnimation: 'mozAnimationEnd',
+                WebkitAnimation: 'webkitAnimationEnd',
+            };
+
+            for (var t in animations) {
+                if (el.style[t] !== undefined) {
+                    return animations[t];
+                }
+            }
+        })(document.createElement('div'));
+
+        this.addClass('animated ' + animationName).one(animationEnd, function () {
+            $(this).removeClass('animated ' + animationName);
+
+            if (typeof callback === 'function') callback();
+        });
+
+        return this;
+    },
+});
 
 $().ready(() => {
     getHTMLrender("template/main.html")
@@ -45,10 +55,10 @@ $().ready(() => {
             //console.log(feed);
             const router = Router(routes);
             router.init();
-            const rsl = rendertmpl("#arl-tpl",feed);
+            const rsl = rendertmpl("#arl-tpl", feed);
             $("#arl-list").animateCss('fadeIn');
             $("#arl-list").html(rsl);
-            const rsl2 = rendertmpl("#rent-tpl",feed);
+            const rsl2 = rendertmpl("#rent-tpl", feed);
             $("#rent-list").animateCss('fadeInRight');
             $("#timeline").animateCss('fadeInRight');
             $("#tag").animateCss('fadeInRight');
@@ -100,5 +110,7 @@ let routes = {
         }
 
     },
-    '/admin': () => {alert('FckU')}
+    '/admin': () => {
+        alert('FckU')
+    }
 };

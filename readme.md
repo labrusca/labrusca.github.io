@@ -6,7 +6,7 @@
 ### if you want to write a page of blog:
 #### 1. Run  ``` python3 creat_rss2.py new``` to creat a markdown file in ./articles
 #### 2. Write your article into new.md
-#### 3. Run  ``` python3 creat_rss2.py build``` to rewname new.md &rewrite rss.xml
+#### 3. Run  ``` python3 creat_rss2.py build``` to rewname new.md & rewrite rss.xml
 #### 4. Push the static blog to your server
 #### 5. Enjoy blogging
 ------------------------
