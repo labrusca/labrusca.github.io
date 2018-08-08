@@ -3,16 +3,16 @@
 	<div class="row">
 		<main id="arl-list" class="col-md-8">
 			<script id="arl-tpl" type="text/html">
-				{{for items}}
-					<article  class="post post-test">
+				{{#each items}}
+					<article class="post post-{{@index}}">
 						<header class="entry-header">
 							<h1 class="entry-title">
-								<a href="{{:link}}">{{:title}}</a>
+								<a href="{{link}}">{{title}}</a>
 							</h1>
 							<div class="entry-meta">
-								<span class="post-category"><a href="#/tag?value={{:tag}}">{{:tag}}</a></span>
+								<span class="post-category"><a href="#/tag?q={{tag}}">{{tag}}</a></span>
 		
-								<span class="post-date"><a><time class="entry-date" datetime="">{{:updated}}</time></a></span>
+								<span class="post-date"><a><time class="entry-date" datetime="">{{updated}}</time></a></span>
 		
 								<span class="post-author"><a href="about.html">Labrusca</a></span>
 		
@@ -20,13 +20,13 @@
 							</div>
 						</header>
 						<div class="entry-content clearfix">
-							<p>{{:description}}</p>
+							<p>{{description}}</p>
 							<div class="read-more cl-effect-14">
-								<a href="{{:link}}" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
+								<a href="{{link}}" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
 							</div>
 						</div>
 					</article>
-				{{/for}}
+				{{/each}}
 			</script>
 
 		</main>
@@ -35,11 +35,11 @@
 				<script id="rent-tpl" type="text/html">		
 					<h3 class="widget-title">最近文章</h3>
 					<ul>
-						{{for items[0]}}
+						{{#each items.[0]}}
 							<li>
-								<a href="{{:link}}" title="{{:updated}}">{{:title}}</a>
+								<a href="{{link}}" title="{{updated}}">{{title}}</a>
 							</li>
-						{{/for}}
+						{{/each}}
 					</ul>
 				</script>
 			</div>
@@ -62,10 +62,10 @@
 				<h3 class="widget-title">文章分类</h3>		
 				<ul>
 					<div>
-						<li><a href="#/tag?value=技术">技术</a></li>
-						<li><a href="#/tag?value=随笔">随笔</a></li>
-						<li><a href="#/tag?value=以主之名">以主之名</a></li>
-						<li><a href="#/tag?value=其它">其它</a></li>
+						<li><a href="#/tag?q=技术">技术</a></li>
+						<li><a href="#/tag?q=随笔">随笔</a></li>
+						<li><a href="#/tag?q=以主之名">以主之名</a></li>
+						<li><a href="#/tag?q=其它">其它</a></li>
 					</div>
 				</ul>
 			</div>

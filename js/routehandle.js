@@ -1,5 +1,13 @@
 function getHTMLrender(htmlfile) {
-    $("#cbody").load(htmlfile)
+    $.get(htmlfile, function(result){
+        $("#cbody").html(result)
+    })
+}
+
+function rendertmpl(id,data) {
+    const source = $(id).html();
+    const tmpl = Handlebars.compile(source);
+    return tmpl(data);
 }
 
 $.fn.extend({
@@ -37,12 +45,10 @@ $().ready(() => {
             //console.log(feed);
             const router = Router(routes);
             router.init();
-            const tmpl = $.templates("#arl-tpl");
-            const rsl = tmpl.render(feed);
+            const rsl = rendertmpl("#arl-tpl",feed);
             $("#arl-list").animateCss('fadeIn');
             $("#arl-list").html(rsl);
-            const tmpl2 = $.templates("#rent-tpl");
-            const rsl2 = tmpl2.render(feed);
+            const rsl2 = rendertmpl("#rent-tpl",feed);
             $("#rent-list").animateCss('fadeInRight');
             $("#timeline").animateCss('fadeInRight');
             $("#tag").animateCss('fadeInRight');
