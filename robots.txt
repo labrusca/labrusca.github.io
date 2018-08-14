@@ -1,9 +1,9 @@
 User-agent: *
 Crawl-delay: 5
 allow: /#/blog/*
-Disallow: /j
-Disallow: /art
-Disallow: /cs
-Disallow: /im
-Disallow: /fo
-Disallow: /te
+Disallow: /#/j
+Disallow: /#/art
+Disallow: /#/cs
+Disallow: /#/im
+Disallow: /#/fo
+Disallow: /#/te

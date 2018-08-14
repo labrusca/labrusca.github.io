@@ -56,25 +56,26 @@ $().ready(() => {
             const router = Router(routes);
             router.init();
             const rsl = rendertmpl("#arl-tpl", feed);
-            $("#arl-list").animateCss('fadeIn');
             $("#arl-list").html(rsl);
+            $("#arl-list").animateCss('fadeIn');
             const rsl2 = rendertmpl("#rent-tpl", feed);
+
+            $("#rent-list").html(rsl2);
             $("#rent-list").animateCss('fadeInRight');
             $("#timeline").animateCss('fadeInRight');
             $("#tag").animateCss('fadeInRight');
-            $("#rent-list").html(rsl2);
         }
     })
 })
 
 const renderAbout = () => {
-    $("#cbody").animateCss('fadeIn');
     getHTMLrender("template/about.html")
+    $("#cbody").animateCss('fadeIn');
 }
 
 const renderContact = () => {
-    $("#cbody").animateCss('bounceIn');
     getHTMLrender("template/contact.html")
+    $("#cbody").animateCss('bounceIn');
 }
 
 
@@ -97,6 +98,7 @@ let routes = {
                                                             <hr>
                                                             ${marked(context)}`)
                                 $("#asidemain").append(`<p class="copyleft"><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />一切<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">作品</span>由<a xmlns:cc="http://creativecommons.org/ns#" href="https://labrusca.net/" property="cc:attributionName" rel="cc:attributionURL">labrusca</a>采用<a rel="license" class="text-info" href="http://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a>进行许可。<br />本许可协议授权之外的使用权限可以从 <a class="text-info" xmlns:cc="http://creativecommons.org/ns#" href="https://labrusca.net/#/contact" rel="cc:morePermissions">contact页面</a> 处获得。`)
+                                $(".copyleft").animateCss('fadeInRight');
                                 $("#pagination").html(`<button id="return" type="button" onClick="location.href='/'" class="btn btn-default btn-lg btn-block">返回</button>`)
                             })
                         }
