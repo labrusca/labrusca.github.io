@@ -1,6 +1,12 @@
 function getHTMLrender(htmlfile) {
-    $.get(htmlfile, result => {
-        $("#cbody").html(result)
+    $.ajax({
+        url: htmlfile,
+        type: "GET",
+        dataType: "html",
+        async: false,
+        success: result => {
+            $("#cbody").html(result)
+        }
     })
 }
 
