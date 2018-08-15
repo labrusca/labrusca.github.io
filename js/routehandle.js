@@ -111,10 +111,12 @@ let routes = {
                     }
                 }
             }
-        }
-
+        },
     },
     '/admin': () => {
         alert('FckU')
+    },
+    '/timeline': () => {
+        alert('No finish yet!')
     }
 };

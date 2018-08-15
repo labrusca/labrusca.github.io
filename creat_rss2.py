@@ -19,8 +19,8 @@ def set_filename():
 
 def creat_article():
     with open('./articles/new.md','w') as new:
-        new.write('[TITLE]: \n')
-        new.write('[TAGS]: \n\n')
+        new.write('[TITLE]:\n')
+        new.write('[TAGS]:\n\n')
         new.write('> This is description.\n\n')
     print("The file: new.md has been Created!")
 
