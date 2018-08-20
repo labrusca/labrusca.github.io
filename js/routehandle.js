@@ -118,5 +118,13 @@ let routes = {
     },
     '/timeline': () => {
         alert('No finish yet!')
+    },
+    '/xss': {
+            '/:XSSstring': {
+                on : (XSSstring) => {
+                    alert(XSSstring)
+                }
+
+            }
     }
 };
