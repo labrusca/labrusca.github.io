@@ -43,8 +43,8 @@ class BlogFeeds:
             link = "https://labrusca.net/rss.xml",
             description = "This is a blog of labrusca",
             language = "zh-CN",
-            managingEditor = "labrusca@live.com",
-            webMaster = "labrusca@live.com",
+            managingEditor = "labrusca@live.com (Labrusca)",
+            webMaster = "labrusca@live.com (Labrusca)",
             lastBuildDate = datetime.datetime.now(),
             items = self.items)
 
@@ -72,7 +72,7 @@ class BlogFeeds:
                     link = f"https://labrusca.net/#/blog/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3][:2]}{filedate[3][2:-3]}", 
                     categories = fileinfo['tags'], 
                     description = fileinfo['description'],
-                    author = "labrusca@live.com",
+                    author = "labrusca@live.com (Labrusca)",
                     guid = Guid(f"https://labrusca.net/articles/{filename}"),
                     pubDate = datetime.datetime(int(filedate[0]), int(filedate[1]), int(filedate[2]), int(filedate[3][:2]), int(filedate[3][2:-3])))
 
