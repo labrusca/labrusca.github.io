@@ -68,8 +68,6 @@ $().ready(() => {
         url: 'rss.xml',
         success: (feed) => {
             //console.log(feed);
-            const router = Router(routes);
-            router.init();
             $('#pagination').twbsPagination({
                 totalPages: Math.ceil(feed.items.length/5),
                 visiblePages: 5,
@@ -81,6 +79,8 @@ $().ready(() => {
             getHTMLrender("template/recent.html", feed, "#recent-list", "fadeInRight")
             $("#timeline").animateCss('fadeInRight');
             $("#tag").animateCss('fadeInRight');
+            const router = Router(routes);
+            router.init();
         }
     })
 })
