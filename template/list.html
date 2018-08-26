@@ -1,0 +1,24 @@
+{{#each this}}
+    <article class="post post-{{@index}}">
+        <header class="entry-header">
+            <h1 class="entry-title">
+                <a href="{{link}}">{{title}}</a>
+            </h1>
+            <div class="entry-meta">
+                <span class="post-category"><a href="#/tag?q={{tag}}">{{tag}}</a></span>
+
+                <span class="post-date"><a><time class="entry-date" datetime="">{{updated}}</time></a></span>
+
+                <span class="post-author"><a href="about.html">Labrusca</a></span>
+
+                <span class="comments-link disable"><a href="#">评论系统未开放</a></span>
+            </div>
+        </header>
+        <div class="entry-content clearfix">
+            <p class="text-center">{{description}}</p>
+            <div class="read-more cl-effect-14">
+                <a href="{{link}}" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
+            </div>
+        </div>
+    </article>
+{{/each}}

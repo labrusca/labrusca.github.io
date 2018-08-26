@@ -1,19 +1,28 @@
-function getHTMLrender(htmlfile) {
+function getHTMLrender(htmlfile, data, id, animate) {
     $.ajax({
         url: htmlfile,
         type: "GET",
         dataType: "html",
         async: false,
-        success: result => {
-            $("#cbody").html(result)
+        success: source => {
+            const tmpl = Handlebars.compile(source);
+            $(id).html(tmpl(data));
+            $(id).animateCss(animate);
+
         }
     })
 }
 
-function rendertmpl(id, data) {
-    const source = $(id).html();
-    const tmpl = Handlebars.compile(source);
-    return tmpl(data);
+function syncHTMLgeter(htmlfile, id) {
+    $.ajax({
+        url: htmlfile,
+        type: "GET",
+        dataType: "html",
+        async: false,
+        success: source => {
+            $(id).html(source);
+        }
+    })
 }
 
 Handlebars.registerHelper('rent', function(context, options) {
@@ -54,20 +63,22 @@ $.fn.extend({
 });
 
 $().ready(() => {
-    getHTMLrender("template/main.html")
+    syncHTMLgeter("template/main.html","#cbody")
     jQuery.getFeed({
         url: 'rss.xml',
         success: (feed) => {
             //console.log(feed);
             const router = Router(routes);
             router.init();
-            const rsl = rendertmpl("#arl-tpl", feed);
-            $("#arl-list").html(rsl);
-            $("#arl-list").animateCss('fadeIn');
-            const rsl2 = rendertmpl("#rent-tpl", feed);
+            $('#pagination').twbsPagination({
+                totalPages: Math.ceil(feed.items.length/5),
+                visiblePages: 5,
+                onPageClick: function (event, page) {
+                    getHTMLrender("template/list.html", feed.items.slice((page-1)*5,page*5), "#arl-list", "fadeIn")
+                }
+            });
 
-            $("#rent-list").html(rsl2);
-            $("#rent-list").animateCss('fadeInRight');
+            getHTMLrender("template/recent.html", feed, "#recent-list", "fadeInRight")
             $("#timeline").animateCss('fadeInRight');
             $("#tag").animateCss('fadeInRight');
         }
@@ -75,12 +86,12 @@ $().ready(() => {
 })
 
 const renderAbout = () => {
-    getHTMLrender("template/about.html")
+    syncHTMLgeter("template/about.html","#cbody")
     $("#cbody").animateCss('fadeIn');
 }
 
 const renderContact = () => {
-    getHTMLrender("template/contact.html")
+    syncHTMLgeter("template/contact.html","#cbody")
     $("#cbody").animateCss('bounceIn');
 }
 
