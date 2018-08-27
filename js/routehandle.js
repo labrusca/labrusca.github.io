@@ -76,9 +76,9 @@ $().ready(() => {
                 }
             });
 
-            getHTMLrender("template/recent.html", feed, "#recent-list", "fadeInRight")
             $("#timeline").animateCss('fadeInRight');
             $("#tag").animateCss('fadeInRight');
+            getHTMLrender("template/recent.html", feed, "#recent-list", "fadeInRight")
             const router = Router(routes);
             router.init();
         }
@@ -86,13 +86,13 @@ $().ready(() => {
 })
 
 const renderAbout = () => {
-    syncHTMLgeter("template/about.html","#cbody")
     $("#cbody").animateCss('fadeIn');
+    syncHTMLgeter("template/about.html","#cbody")
 }
 
 const renderContact = () => {
-    syncHTMLgeter("template/contact.html","#cbody")
     $("#cbody").animateCss('bounceIn');
+    syncHTMLgeter("template/contact.html","#cbody")
 }
 
 
