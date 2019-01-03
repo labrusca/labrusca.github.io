@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Light of Seraphim - Labrusca's Blog</title>
+
+		<!-- meta -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="懒人Labrusca的个人博客" />
+		<meta name="keywords" content="labrusca, Blog, Light of Seraphim, 网络安全, 信息安全, 渗透测试, 博客, 以马内利" />
+
+	    <!-- css -->
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/ionicons.min.css">
+		<link rel="stylesheet" href="../css/pace.css">
+		<link rel="stylesheet" href="../css/animate.css">
+		<link rel="stylesheet" href="../css/custom.css">
+
+	    <!-- js -->
+	    <script src="../js/jquery-3.3.1.min.js"></script>
+	    <script src="../js/jquery.jfeed.js"></script>
+	    <script src="../js/jquery.twbsPagination.min.js"></script>
+	    <script src="../js/bootstrap.min.js"></script>
+	    <script src="../js/pace.min.js"></script>
+		<script src="../js/modernizr.custom.js"></script>
+		<script src="../js/director.min.js"></script>
+		<script src="../js/xss.min.js"></script>
+		<!-- <script src="//cdn.bootcss.com/voca/1.4.0/voca.min.js"></script> -->
+		<script src="../js/marked.min.js"></script>
+		<script src="../js/handlebars.min.js"></script>
+		<script src='//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+		<script type="text/x-mathjax-config">
+			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+		</script>
+	</head>
+
+	<body background-color="#d0d0d0">
+		<div class="container">	
+			<header id="site-header">
+				<div class="row">
+					<div class="col-md-4 col-sm-5 col-xs-8">
+						<div class="logo">
+							<h1><a href="/"><b>Light of Seraphim</b></a></h1>
+						</div>
+					</div><!-- col-md-4 -->
+					<div class="col-md-8 col-sm-7 col-xs-4">
+						<nav class="main-nav" role="navigation">
+							<div class="navbar-header">
+  								<button type="button" id="trigger-overlay" class="navbar-toggle">
+    								<span class="ion-navicon"></span>
+  								</button>
+							</div>
+
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  								<ul class="nav navbar-nav navbar-right">
+    								<li class="cl-effect-11"><a href="/" data-hover="Home">Home</a></li>
+    								<li class="cl-effect-11"><a href="/timeline" data-hover="TimeLine">TimeLine</a></li>
+    								<li class="cl-effect-11"><a href="/about" data-hover="About">About</a></li>
+									<li class="cl-effect-11"><a href="/contact" data-hover="Contact">Contact</a></li>
+									<li class="cl-effect-11"><a id="rss-link" href="rss.xml"><span id="rss-icon" class="ion-social-rss"></span></a></li>
+  								</ul>
+							</div><!-- /.navbar-collapse -->
+						</nav>
+						<div id="header-search-box">
+							<a id="search-menu" href="#"><span id="search-icon" class="ion-ios-search-strong"></span></a>
+							<div id="search-form" class="search-form">
+								<form role="search" method="get" id="searchform" action="#">
+									<input type="search" placeholder="Search" required>
+									<button type="submit"><span class="ion-ios-search-strong"></span></button>
+								</form>				
+							</div>
+						</div>
+					</div><!-- col-md-8 -->
+				</div>
+			</header>
+		</div>
+
+		<div id="cbody" class="content-body">
+			<div class="alert alert-danger">你的浏览器好像不兼容，刷新或者换个浏览器试试？</div>
+		</div>
+		<script async src="../js/busuanzi.pure.mini.js"></script>
+		<footer id="site-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 copyright">
+						<br />2016-2019 Labrusca <a href="https://labrusca.net/" target="_blank" title="Light of Seraphim">My Blog</a> - <a href="http://www.cqagape.com/" title="愿荣耀归于万有之神我主耶稣基督，因这一切乃是出于圣灵!" target="_blank">以马内利</a></p> <div class="text-center text-muted">共有<span id="busuanzi_container_site_uv"><span id="busuanzi_value_site_uv"></span></span>个不明生物点击了<span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span></span>次</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<!-- Mobile Menu -->
+		<div class="overlay overlay-hugeinc">
+			<button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
+			<nav>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/timeline">TimeLine</a></li>
+					<li><a href="/about">About</a></li>
+					<li><a href="/contact">Contact</a></li>
+					<li><a href="../rss.xml"><span id="rss-icon-mobile" class="ion-social-rss"></span></a></li>
+				</ul>
+			</nav>
+		</div>
+
+		<script src="../js/search.js"></script>
+		<script src="../js/func.js"></script>
+		<script src="../js/routehandle.js"></script>
+	</body>
+</html>

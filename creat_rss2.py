@@ -69,7 +69,7 @@ class BlogFeeds:
         fileobj.close()
         return Item(
                     title = fileinfo['title'],
-                    link = f"https://labrusca.net/#/blog/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3][:2]}{filedate[3][2:-3]}", 
+                    link = f"https://labrusca.net/blog/#/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3][:2]}{filedate[3][2:-3]}", 
                     categories = fileinfo['tags'], 
                     description = fileinfo['description'],
                     author = "labrusca@live.com (Labrusca)",
