@@ -25,6 +25,18 @@ function syncHTMLgeter(htmlfile, id) {
     })
 }
 
+function syncHTMLadder(htmlfile, id) {
+    $.ajax({
+        url: htmlfile,
+        type: "GET",
+        dataType: "html",
+        async: false,
+        success: source => {
+            $(id).append(source);
+        }
+    })
+}
+
 Handlebars.registerHelper('rent', function(context, options) {
     var ret = "<ul>";
   

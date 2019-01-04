@@ -1,6 +1,8 @@
 User-agent: *
 Crawl-delay: 5
-allow: /#/blog/*
+allow: /blog/*
+allow: /about/
+allow: /contact/
 Disallow: /j
 Disallow: /art
 Disallow: /cs
