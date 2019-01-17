@@ -1,6 +1,6 @@
 let today = new Date()
 const month = today.getMonth()
-const day = today.getDay()
+const day = today.getDate()
 const ChristmasDay = (month==11 && day>=24) || (month==0 && day<=6)
 if(ChristmasDay){
     let snowEffectInterval = jQuery.fn.snow({
