@@ -22,7 +22,7 @@ let routes = {
                                 correctLevel: 'H',
                                 data: `https://labrusca.net/blog/#/${year}/${month}/${day}/${time}`,
                                 logo: {
-                                  text: 'Labrusca',
+                                  text: 'share',
                                   options: {
                                     color: '#6495ED',
                                   },
