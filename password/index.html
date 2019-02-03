@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <script src="https://cdn.bootcss.com/brython/3.7.0/brython.min.js"></script>
+    <script src="https://cdn.bootcss.com/brython/3.7.0/brython_stdlib.js"></script>
+
+</head>
+
+<body onload="brython()">
+
+    <script type="text/python">
+        from browser import document, alert
+        import base64
+        from hashlib import sha512
+
+        def test(oldpassword):
+            tmp, newpassword, mipassword = "", "", ""
+            for letter in oldpassword:
+                tmp += str(bin(ord(letter)))[2:]
+            newhash = sha512(tmp.encode(encoding="utf-8")).hexdigest()
+            str_base64 = str(base64.b64encode(newhash.encode(encoding="utf-8")))
+            
+            for num in range(0, len(oldpassword)):
+                # print(ord(oldpassword[num]))
+                mipassword += str_base64[ord(oldpassword[num])]
+                newpassword = oldpassword[:4] + "_" + mipassword
+            return newpassword
+
+        def echo(event):
+            alert(test(document["zone"].value))
+
+        document["mybutton"].bind("click", echo)
+        </script>
+
+    <input id="zone"><button id="mybutton">click !</button>
+
+</body>
+
+</html>
