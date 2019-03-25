@@ -1,8 +1,13 @@
 let today = new Date()
 const month = today.getMonth()
 const day = today.getDate()
-const ChristmasDay = (month==11 && day>=24) || (month==0 && day<=6)
-if(ChristmasDay){
+
+function whatsfestival(){
+    if ((month==11 && day>=24) || (month==0 && day<=6)){return "Christmas"}
+    if ((month==3) && (day==1)){return "Aprilfool"}
+}
+
+function Christmas(){
     let snowEffectInterval = jQuery.fn.snow({
         // min size of element (default: 20)
         minSize: 10,
@@ -73,4 +78,19 @@ if(ChristmasDay){
             },
         ]
     });
+}
+
+function Aprilfool(){
+    self.location = 'index.html'
+}
+
+switch(whatsfestival()){
+    case "Christmas":
+        Christmas()
+        break
+    case "Aprilfool":
+        Aprilfool()
+        break
+    default:
+        console.log(`${month+1}月${day}日`)
 }
