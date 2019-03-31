@@ -81,7 +81,7 @@ function Christmas(){
 }
 
 function Aprilfool(){
-    self.location = 'index.html'
+    self.location = 'index1.html'
 }
 
 switch(whatsfestival()){
