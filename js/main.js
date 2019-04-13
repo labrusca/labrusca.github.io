@@ -1,7 +1,7 @@
 $().ready(() => {
     syncHTMLgeter("template/main.html","#cbody")
-    jQuery.getFeed({
-        url: 'rss.xml',
+    jQuery.get({
+        url: 'feed.json',
         success: (feed) => {
             //console.log(feed);
             $('#pagination').twbsPagination({

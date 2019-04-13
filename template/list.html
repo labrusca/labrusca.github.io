@@ -2,12 +2,12 @@
     <article class="post post-{{@index}}">
         <header class="entry-header">
             <h1 class="entry-title">
-                <a href="{{link}}" target="_blank">{{title}}</a>
+                <a href="{{url}}" target="_blank">{{title}}</a>
             </h1>
             <div class="entry-meta">
-                <span class="post-category"><a href="/tag/#/{{tag}}">{{tag}}</a></span>
+                <span class="post-category"><a href="/tag/#/{{tags}}">{{tags}}</a></span>
 
-                <span class="post-date"><a><time class="entry-date" datetime="">{{updated}}</time></a></span>
+                <span class="post-date"><a><time class="entry-date" datetime="">{{date_published}}</time></a></span>
 
                 <span class="post-author"><a href="/about">Labrusca</a></span>
 
@@ -15,9 +15,9 @@
             </div>
         </header>
         <div class="entry-content clearfix">
-            <p class="text-center">{{description}}</p>
+            <p class="text-center">{{summary}}</p>
             <div class="read-more cl-effect-14">
-                <a href="{{link}}" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
+                <a href="{{url}}" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
             </div>
         </div>
     </article>
