@@ -18,7 +18,7 @@ function syncHTMLgeter(htmlfile, id) {
         url: htmlfile,
         type: "GET",
         dataType: "html",
-        async: true,
+        async: false,
         success: source => {
             $(id).html(source);
         }
@@ -30,7 +30,7 @@ function syncHTMLadder(htmlfile, id) {
         url: htmlfile,
         type: "GET",
         dataType: "html",
-        async: true,
+        async: false,
         success: source => {
             $(id).append(source);
         }
