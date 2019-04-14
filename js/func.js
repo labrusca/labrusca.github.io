@@ -41,7 +41,7 @@ Handlebars.registerHelper('rent', function(context, options) {
     var ret = "<ul>";
   
     for(var i=0; i<3; i++) {
-      ret = ret + `<li><a href="${context[i].link}" title="${context[i].updated}">${context[i].title}</a></li>`;
+      ret = ret + `<li><a href="${context[i].url}" title="${context[i].date_published}">${context[i].title}</a></li>`;
     }
   
     return ret + "</ul>";

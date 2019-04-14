@@ -1,5 +1,5 @@
 '''
-creat_rss2.py 
+creat_feedjson.py 
 Test on python3(windows 10)
 Author: Labrusca
 '''
@@ -8,7 +8,8 @@ import datetime
 import os
 import sys
 import time
-from rfeed import *
+import feedjson
+import rfeed
 
 def set_filename():
     ''' Rename the file use datetime '''
@@ -32,13 +33,23 @@ class BlogFeeds:
             set_filename()
         except FileNotFoundError:
             print('No new.md file,pass...')
-        self.items = []
+        self.feedjson_items,  self.rss2_items= [], []
         mdlist = os.listdir('./articles')
         for mdeach in mdlist:
             if mdeach != 'new.md':
-                self.items.insert(0,self.get_info(mdeach))
+                ijson_info, rjson_info = self.get_info(mdeach)
+                self.feedjson_items.insert(0,ijson_info)
+                self.rss2_items.insert(0,rjson_info)
 
-        self.feed = Feed(
+        self.feed = feedjson.Feedjson(
+            title = "Light of Seraphim",
+            feed_url = "https://labrusca.net/feed.json",
+            description = "This is a blog of labrusca",
+            author = "labrusca#live.com (Labrusca)",
+            home_page_url = "https://labrusca.net/",
+            items = self.feedjson_items)
+
+        self.rss2 = rfeed.Feed(
             title = "Light of Seraphim",
             link = "https://labrusca.net/rss.xml",
             description = "This is a blog of labrusca",
@@ -46,9 +57,9 @@ class BlogFeeds:
             managingEditor = "labrusca@live.com (Labrusca)",
             webMaster = "labrusca@live.com (Labrusca)",
             lastBuildDate = datetime.datetime.now(),
-            items = self.items)
+            items = self.rss2_items)
 
-    def show_rssxml(self):
+    def show_feed(self):
         print(self.feed.rss())
 
     def get_info(self,filename):
@@ -67,27 +78,43 @@ class BlogFeeds:
                 fileinfo['description'] = ld.split('> ')[1][:-1]
             ld = fileobj.readline()
         fileobj.close()
-        return Item(
+        return feedjson.Item(
+                    title = fileinfo['title'],
+                    url = f"https://labrusca.net/blog/#/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3][:2]}{filedate[3][2:-3]}", 
+                    tags = fileinfo['tags'], 
+                    summary = fileinfo['description'],
+                    author = "Labrusca",
+                    id = f"https://labrusca.net/articles/{filename}",
+                    date_published = datetime.datetime(int(filedate[0]), int(filedate[1]), int(filedate[2]), int(filedate[3][:2]), int(filedate[3][2:-3])).isoformat('T')
+                    ).data, \
+                rfeed.Item(
                     title = fileinfo['title'],
                     link = f"https://labrusca.net/blog/#/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3][:2]}{filedate[3][2:-3]}", 
                     categories = fileinfo['tags'], 
                     description = fileinfo['description'],
                     author = "labrusca@live.com (Labrusca)",
-                    guid = Guid(f"https://labrusca.net/articles/{filename}"),
+                    guid = rfeed.Guid(f"https://labrusca.net/articles/{filename}"),
                     pubDate = datetime.datetime(int(filedate[0]), int(filedate[1]), int(filedate[2]), int(filedate[3][:2]), int(filedate[3][2:-3])))
 
-    def save_rss_file(self):
-        f = open('rss.xml','w',encoding='utf-8')
+    def save_feed_file(self):
+        f = open('feed.json','w',encoding='utf-8')
         f.write(self.feed.rss())
         f.close()
-        print('Rewrite: rss.xml\n')
+        print('Writing -> feed.json\n')
+
+    def save_rss2_file(self):
+        f = open('rss.xml','w',encoding='utf-8')
+        f.write(self.rss2.rss())
+        f.close()
+        print('Writing -> rss.xml\n')
 
 if __name__ == "__main__":
     if len(sys.argv) == 2 :
         if sys.argv[1] == 'build':
             pub = BlogFeeds()
             #pub.show_rssxml()
-            pub.save_rss_file()
+            pub.save_feed_file()
+            pub.save_rss2_file()
         elif sys.argv[1] == 'new':
             creat_article()
     else:

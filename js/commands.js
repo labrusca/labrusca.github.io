@@ -1,7 +1,7 @@
 let Bloglist = new Array();
 
-jQuery.getFeed({
-    url: 'rss.xml',
+jQuery.get({
+    url: 'feed.json',
     success: (feed) => {
         for (i in feed.items){Bloglist[i] = feed.items[i];}
     }
