@@ -7,6 +7,8 @@ $().ready(() => {
             $('#pagination').twbsPagination({
                 totalPages: Math.ceil(feed.items.length/7),
                 visiblePages: 5,
+                //paginationClass: "pagination btn-group", 
+                //anchorClass: "btn btn-default", 
                 onPageClick: function (event, page) {
                     getHTMLrender("template/list.html", feed.items.slice((page-1)*7,page*7), "#arl-list", "fadeIn")
                 }

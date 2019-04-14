@@ -82,7 +82,7 @@ class BlogFeeds:
                     title = fileinfo['title'],
                     url = f"https://labrusca.net/blog/#/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3][:2]}{filedate[3][2:-3]}", 
                     tags = fileinfo['tags'], 
-                    summary = fileinfo['description'],
+                    content_text = fileinfo['description'],
                     author = "Labrusca",
                     id = f"https://labrusca.net/articles/{filename}",
                     date_published = datetime.datetime(int(filedate[0]), int(filedate[1]), int(filedate[2]), int(filedate[3][:2]), int(filedate[3][2:-3])).isoformat('T')
