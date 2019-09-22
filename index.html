@@ -8,6 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content="懒人Labrusca的个人博客" />
 		<meta name="keywords" content="labrusca, Blog, Light of Seraphim, 网络安全, 信息安全, 渗透测试, 博客, 以马内利" />
+		<link rel="manifest" href="/manifest.json">
 
 	    <!-- css -->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -69,5 +70,18 @@
 		<script src="js/main.js"></script>
 		<script src="js/jquery.snow.js"></script>
 		<script async src="js/easter-eggs.js"></script>
+		<script>
+			if ('serviceWorker' in navigator) {
+				window.addEventListener('load', function() {
+					navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+						// Registration was successful
+						console.log('ServiceWorker registration successful with scope: ', registration.scope);
+					}, function(err) {
+						// registration failed :/
+						console.log('ServiceWorker registration failed: ', err);
+					});
+				});
+			}
+		</script>
 	</body>
 </html>

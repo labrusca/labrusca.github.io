@@ -1,0 +1,21 @@
+{"dir" : "ltr",
+    "lang" : "Chinese",
+    "name" : "Light of Seraphim",
+    "scope" : "/",
+    "display" : "standalone",
+    "start_url" : "https://labrusca.net/",
+    "short_name" : "LoS",
+    "theme_color" : "transparent",
+    "description" : "懒人Labrusca的个人博客 - Labrusca's Blog",
+    "orientation" : "any",
+    "background_color" : "transparent",
+    "related_applications" : "",
+    "prefer_related_applications" : "false",
+    "generated" : "true",
+    "icons" : [
+        {
+            "src"           : "/images/logo/logo072.png",
+            "sizes"         : "72x72",
+            "type"          : "image/png"
+        }
+    ]}

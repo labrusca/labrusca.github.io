@@ -33,6 +33,11 @@
  * 2.0 - General Elements
  */
 
+ .darkmode--activated a, .darkmode--activated p,.darkmode--activated article, .darkmode--activated #site-header a,.darkmode--activated ul.pagination .active, .darkmode--activated main, .darkmode--activated .widget{
+	background: #000; 
+	color: #fff;
+  }
+
 [v-cloak] {
 	display: none;
 }
