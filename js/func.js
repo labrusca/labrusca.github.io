@@ -37,10 +37,10 @@ function syncHTMLadder(htmlfile, id) {
     })
 }
 
-Handlebars.registerHelper('rent', function(context, options) {
+Handlebars.registerHelper('rent', function(context, n) {
     var ret = "<ul>";
   
-    for(var i=0; i<3; i++) {
+    for(var i=0; i<n; i++) {
       ret = ret + `<li><a href="${context[i].url}" title="${context[i].date_published}">${context[i].title}</a></li>`;
     }
   
