@@ -10,7 +10,7 @@
 #### 4. Push the static blog to your server
 #### 5. Enjoy blogging
 ------------------------
-- Template by **[handlebars.js](https://github.com/wycats/handlebars.js)**
+- Template by **[ejs](https://github.com/mde/ejs)**
 - Router by **[director](https://github.com/flatiron/director)**
 - Markdown parser by **[marked](https://github.com/markedjs/marked)**
 
