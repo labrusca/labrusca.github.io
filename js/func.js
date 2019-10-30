@@ -1,87 +1,23 @@
-function getHTMLrender(htmlfile, data, id, animate) {
+function loadEjs(htmlfile, data) {
+    let e;
     $.ajax({
         url: htmlfile,
         type: "GET",
         dataType: "html",
         async: false,
         success: source => {
-            const tmpl = Handlebars.compile(source);
-            $(id).html(tmpl(data));
-            $(id).animateCss(animate);
-
+            e = ejs.render(source, data)
         }
     })
+    return e
 }
-
-function syncHTMLgeter(htmlfile, id) {
-    $.ajax({
-        url: htmlfile,
-        type: "GET",
-        dataType: "html",
-        async: false,
-        success: source => {
-            $(id).html(source);
-        }
-    })
-}
-
-function syncHTMLadder(htmlfile, id) {
-    $.ajax({
-        url: htmlfile,
-        type: "GET",
-        dataType: "html",
-        async: false,
-        success: source => {
-            $(id).append(source);
-        }
-    })
-}
-
-Handlebars.registerHelper('rent', function(context, n) {
-    var ret = "<ul>";
-  
-    for(var i=0; i<n; i++) {
-      ret = ret + `<li><a href="${context[i].url}" title="${context[i].date_published}">${context[i].title}</a></li>`;
-    }
-  
-    return ret + "</ul>";
-  });
 
 $.fn.extend({
-    animateCss: function (animationName, callback) {
-        var animationEnd = (function (el) {
-            var animations = {
-                animation: 'animationend',
-                OAnimation: 'oAnimationEnd',
-                MozAnimation: 'mozAnimationEnd',
-                WebkitAnimation: 'webkitAnimationEnd',
-            };
-
-            for (var t in animations) {
-                if (el.style[t] !== undefined) {
-                    return animations[t];
-                }
-            }
-        })(document.createElement('div'));
-
-        this.addClass('animated ' + animationName).one(animationEnd, function () {
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        $(this).addClass('animated ' + animationName).one(animationEnd, function() {
             $(this).removeClass('animated ' + animationName);
-
-            if (typeof callback === 'function') callback();
         });
-
-        return this;
-    },
+}
 });
-
-
-const renderAbout = () => {
-    $("#cbody").animateCss('fadeIn');
-    syncHTMLgeter("../template/about.html","#cbody")
-}
-
-const renderContact = () => {
-    $("#cbody").animateCss('bounceIn');
-    syncHTMLgeter("../template/contact.html","#cbody")
-}
 

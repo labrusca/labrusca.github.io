@@ -1,0 +1,23 @@
+<% let idBase64 = btoa(id) %>
+    <article class="post post-<%= idBase64 %>">
+        <header class="entry-header">
+            <h1 class="entry-title">
+                <a href="<%= url %>" target="_blank"><%= title %></a>
+            </h1>
+            <div class="entry-meta">
+                <span class="post-category"><a href="/tag/#/<%=tags%>"><%= tags %></a></span>
+
+                <span class="post-date"><a><time class="entry-date" datetime=""><%= date_published %></time></a></span>
+
+                <span class="post-author"><a href="/about"><%= author %></a></span>
+
+                <span class="comments-link disable"><a href="#">评论系统未开放</a></span>
+            </div>
+        </header>
+        <div class="entry-content clearfix">
+            <p class="text-center"><%= content_text %></p>
+            <div class="read-more cl-effect-14">
+                <a href="<%= url %>" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
+            </div>
+        </div>
+    </article>

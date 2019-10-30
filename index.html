@@ -21,15 +21,14 @@
 
 	    <!-- js -->
 	    <script src="js/jquery-3.3.1.min.js"></script>
-	    <script src="js/jquery.twbsPagination.min.js"></script>
 	    <script src="js/bootstrap.min.js"></script>
 	    <script src="js/pace.min.js"></script>
 		<script src="js/modernizr.custom.js"></script>
 		<script src="js/director.min.js"></script>
 		<script src="js/xss.min.js"></script>
 		<!-- <script src="//cdn.bootcss.com/voca/1.4.0/voca.min.js"></script> -->
+		<script src="js/ejs.js"></script>
 		<script src="js/marked.min.js"></script>
-		<script src="js/handlebars.min.js"></script>
 		<script src='//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
 		<script type="text/x-mathjax-config">
 			MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
@@ -38,9 +37,8 @@
 	</head>
 
 	<body>
-		<div class="container">	
+		<div id="header-insert" class="container">	
 			<!-- header here -->
-			<script>syncHTMLadder("template/header.html", ".container");</script>
 		</div>
 
 		<div id="cbody" class="content-body">
@@ -49,27 +47,38 @@
 		<script async src="js/busuanzi.pure.mini.js"></script>
 
 		<!-- footer here -->
-		<script>syncHTMLadder("template/footer.html", "body");</script>
-
-		<!-- Mobile Menu -->
-		<div class="overlay overlay-hugeinc">
-			<button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
-			<nav>
-				<ul>
-					<li><a href="/">Home</a></li>
-					<li><a href="/timeline/">TimeLine</a></li>
-					<li><a href="/about/">About</a></li>
-					<li><a href="/contact/">Contact</a></li>
-					<li><a href="/rss.xml"><span id="rss-icon-mobile" class="ion-social-rss"></span></a></li>
-					<li><a href="/feed.json"><img src="/img/feedjson.png" height="25" width="25" /></a></li>
-				</ul>
-			</nav>
-		</div>
 
 		<script src="js/search.js"></script>
-		<script src="js/main.js"></script>
 		<script src="js/jquery.snow.js"></script>
 		<script async src="js/easter-eggs.js"></script>
+		<script>
+			$().ready(() => {
+				$.get("feed.json", (data,status) => {
+					//let html = new EJS({url: 'views/footer.ejs'}).render(date);
+					$("#cbody").html(loadEjs('views/main.ejs', data))
+					$("#header-insert").append(loadEjs('views/header.ejs', data))
+					$("body").append(loadEjs('views/footer.ejs', data))
+					let n=0;
+					$("#cbody").animateCss('fadeIn');
+					for(;n<4;n++) {
+						$("#arl-list").append(loadEjs('views/list.ejs', data.items[n]))
+					}
+					$(window).scroll(() => {
+						var scrollTop = $(this).scrollTop()
+						var scrollHeight = $(document).height()
+						var windowHeight = $(this).height()
+						if (scrollTop + windowHeight == scrollHeight) {
+							//console.log()
+							data.items.slice(n,n+4).forEach(item => {
+								$("#arl-list").append(loadEjs('views/list.ejs', item))
+								$(`#${btoa(item.id)}`).animateCss('fadeIn');
+							})
+							n += 5;
+						}
+					})
+				})
+			})
+		</script>
 		<script>
 			if ('serviceWorker' in navigator) {
 				window.addEventListener('load', function() {
