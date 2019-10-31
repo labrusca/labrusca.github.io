@@ -1,13 +1,19 @@
 <% let idBase64 = btoa(id) %>
 <div id="<%= idBase64 %>" class="section center-align">
-  <h4><%= title %></h4>
+    <h4><%= title %></h4>
+    <h6><%= date_published %>
+    <% tags.forEach(tag => { %>
+        <div class="chip"><%= tag %></div>        
+    <% }); %>
+    </h6>
+
   <div class="divider"></div>
-  <p><%= content_text %></p>
+  <p class="left-align"><%= content_text %></p>
 
     <a class="waves-effect waves-light btn modal-trigger red lighten-2 " href="#modal-<%= idBase64 %>">继续阅读</a>
 
-    <div id="modal-<%= idBase64 %>" class="modal modal-fixed-footer">
-      <div class="modal-content row">
+    <div id="modal-<%= idBase64 %>" class="modal modal-fixed-footer col s9 center-align">
+      <div class="modal-content">
         <h4>Modal Header</h4>
         <p>A bunch of text</p>
       </div>
@@ -17,4 +23,4 @@
     </div>
 </div>
 <% loadMd(id, idBase64) %>
-<% $('.modal').modal(); %>
+<% $('.modal').modal({ dismissible: true }); %>

@@ -67,11 +67,11 @@
 						var scrollTop = $(this).scrollTop()
 						var scrollHeight = $(document).height()
 						var windowHeight = $(this).height()
-						if (scrollTop + windowHeight == scrollHeight) {
+						if (scrollTop + windowHeight >= scrollHeight - 250) {
 							//console.log()
 							data.items.slice(n,n+4).forEach(item => {
 								$("#arl-list").append(loadEjs('views/list.ejs', item))
-								$(`#${btoa(item.id)}`).animateCss('fadeIn');
+								$(`.post-${btoa(item.id)}`).animateCss('fadeIn');
 							})
 							n += 5;
 						}

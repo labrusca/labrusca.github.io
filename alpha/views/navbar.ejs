@@ -1,11 +1,17 @@
-<nav>
+<nav class="nav-extended">
         <div class="nav-wrapper">
             <a href="<%= home_page_url %>" class="brand-logo"><%= title %></a>
-            <!-- <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a> -->
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#/timeline">时间线</a></li>
-                <li><a href="#/about">关于我</a></li>
-                <li><a href="#/contact">联系我</a></li>
+                <li><a class="waves-effect waves-light" href="#/timeline">时间线</a></li>
+                <li><a class="waves-effect waves-light" href="#/about">关于我</a></li>
+                <li><a class="waves-effect waves-light" href="#/contact">联系我</a></li>
             </ul>
         </div>
 </nav>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a class="waves-effect waves-light" href="#/timeline">时间线</a></li>
+    <li><a class="waves-effect waves-light" href="#/about">关于我</a></li>
+    <li><a class="waves-effect waves-light" href="#/contact">联系我</a></li>
+</ul>
