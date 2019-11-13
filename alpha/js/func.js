@@ -20,10 +20,3 @@ $.fn.extend({
         });
 }
 });
-
-function loadMd(url, id) {
-    $.get(url, e => {
-        $(`#${id} .modal-content`).html(marked(e))
-        //console.log($(`#${id} .modal-content`).html())
-    })
-}
