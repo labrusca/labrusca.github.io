@@ -1,4 +1,4 @@
-var cacheName = 'labrusca-net-v2';
+var cacheName = 'labrusca-net--alpha-v3';
 
 var urlsToCache = [
     '/',
@@ -6,10 +6,11 @@ var urlsToCache = [
     'img/',
     'js/',
     'blog/index.html',
-    'contact.html',
-    'about.html',
-    'views/',
-    'fonts/'
+    'views/navbar.ejs',
+    'views/list.ejs',
+    'views/footer.ejs',
+    'password/index.html'
+
 ];
 
 self.addEventListener('install', function(event) {

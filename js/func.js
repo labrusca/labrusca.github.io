@@ -21,3 +21,8 @@ $.fn.extend({
 }
 });
 
+const darkmode =  new Darkmode();
+if((darkmode.isActivated()==false) && (localStorage.darkmode =="true")) {
+    //localStorage.setItem('darkmode', 'false');
+    darkmode.toggle()
+}

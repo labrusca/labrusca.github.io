@@ -1,23 +1,16 @@
 <% let idBase64 = btoa(id) %>
-    <article class="post post-<%= idBase64 %>">
-        <header class="entry-header">
-            <h1 class="entry-title">
-                <a href="<%= url %>" target="_blank"><%= title %></a>
-            </h1>
-            <div class="entry-meta">
-                <span class="post-category"><a href="/tag/#/<%=tags%>"><%= tags %></a></span>
+<div id="<%= idBase64 %>" class="section center-align">
+    <h4><%= title %></h4>
+    <h6><%= date_published %>
+    <% tags.forEach(tag => { %>
+        <div class="chip"><%= tag %></div>        
+    <% }); %>
+    </h6>
 
-                <span class="post-date"><a><time class="entry-date" datetime=""><%= date_published %></time></a></span>
+  <div class="divider"></div>
+  <p class="left-align"><%= content_text %></p>
 
-                <span class="post-author"><a href="/about"><%= author %></a></span>
+    <a class="waves-effect waves-light btn modal-trigger blue-grey lighten-3 hoverable" href="blog/#<%= idBase64 %>">继续阅读</a>
 
-                <span class="comments-link disable"><a href="#">评论系统未开放</a></span>
-            </div>
-        </header>
-        <div class="entry-content clearfix">
-            <p class="text-center"><%= content_text %></p>
-            <div class="read-more cl-effect-14">
-                <a href="<%= url %>" class="more-link">继续阅读详情 <span class="meta-nav">→</span></a>
-            </div>
-        </div>
-    </article>
+
+</div>

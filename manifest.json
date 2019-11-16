@@ -3,7 +3,7 @@
     "name" : "Light of Seraphim",
     "scope" : "/",
     "display" : "standalone",
-    "start_url" : "https://labrusca.net/",
+    "start_url" : "/index.html",
     "short_name" : "LoS",
     "theme_color" : "transparent",
     "description" : "懒人Labrusca的个人博客 - Labrusca's Blog",
