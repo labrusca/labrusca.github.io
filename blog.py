@@ -4,6 +4,7 @@ Test on python3(windows 10)
 Author: Labrusca
 '''
 
+import base64
 import datetime
 import os
 import sys
@@ -24,6 +25,12 @@ def creat_article():
         new.write('[TAGS]:\n\n')
         new.write('> This is description.\n\n')
     print("The file: new.md has been Created!")
+
+
+def b64_encoder(string):
+    byte_obj=string.encode("utf-8")#string to bytes.
+    encoded=base64.b64encode(byte_obj)#arg is must be bytes.
+    return encoded.decode("utf-8")
 
 class BlogFeeds:
     def __init__(self):
@@ -77,10 +84,11 @@ class BlogFeeds:
             elif ld.startswith('> '):
                 fileinfo['description'] = ld.split('> ')[1][:-1]
             ld = fileobj.readline()
+        b64_id = b64_encoder(f"https://labrusca.net/articles/{filename}")
         fileobj.close()
         return feedjson.Item(
                     title = fileinfo['title'],
-                    url = f"https://labrusca.net/blog/#/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3][:2]}{filedate[3][2:-3]}", 
+                    url = f"https://labrusca.net/blog/#/{b64_id}", 
                     tags = fileinfo['tags'], 
                     content_text = fileinfo['description'],
                     author = "Labrusca",
@@ -89,7 +97,7 @@ class BlogFeeds:
                     ).data, \
                 rfeed.Item(
                     title = fileinfo['title'],
-                    link = f"https://labrusca.net/blog/#/{filedate[0]}/{filedate[1]}/{filedate[2]}/{filedate[3][:2]}{filedate[3][2:-3]}", 
+                    link = f"https://labrusca.net/blog/#/{b64_id}", 
                     categories = fileinfo['tags'], 
                     description = fileinfo['description'],
                     author = "labrusca@live.com (Labrusca)",
