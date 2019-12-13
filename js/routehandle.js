@@ -9,7 +9,7 @@ let routes = {
                 <div class="row container indigo lighten-5 z-depth-5">
                     <div class="col s12" style="widht:100%;height:100%;word-wrap: break-word">
                         <!-- <h3 class="card-title center-align">${ filterXSS(title) }</h3> -->
-                        <span class="text-darken-2">${ marked(context) }</span>
+                        <span class="text-darken-2">${ filterXSS(marked(context)) }</span>
                     </div>
                 </div>
                 `
@@ -22,7 +22,7 @@ let routes = {
                 const canvas = qrcanvas.qrcanvas({
                     cellSize: 5,
                     correctLevel: 'H',
-                    data: `https://labrusca.net/blog/#${id}`,
+                    data: `${window.location.href}`,
                     logo: {
                         image,
                     },

@@ -6,7 +6,7 @@ __author__ = "Labrusca - https://labrusca.net"
 
 class ElementRequiredError(Exception):
     def __doc__(self):
-        return "created by https://github.com/svpino"
+        return "created by https://github.com/svpino \nmodified by https://labrusca.net"
 
     def __init__(self, element1, element2=None):
         self.element1 = element1
