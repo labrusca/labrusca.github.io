@@ -91,7 +91,7 @@
                     //console.log()
                     data.items.slice(n,n+4).forEach(item => {
                         $("main").append(loadEjs('views/list.ejs', item))
-                        $(`#${btoa(item.id)}`).animateCss('fadeIn');
+                        $(`#${item.id}`).animateCss('fadeIn');
                     })
                     n += 5;
                 }
