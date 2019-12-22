@@ -51,7 +51,7 @@ var terminal = new Terminal('terminal', {welcome: '<h3>欢迎来到Light of Sera
                 return ''
 
             case 'read':
-                const htmltext = marked($.ajax({url:Bloglist[args[0]].id,async:false}).responseText);
+                const htmltext = marked($.ajax({url:`${atob(Bloglist[args[0]].id)}`,async:false}).responseText);
                 return `<h1>${Bloglist[args[0]].title}</h1><p>${htmltext}`;
 
             case 'reboot':
