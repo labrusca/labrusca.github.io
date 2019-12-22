@@ -1,5 +1,4 @@
-<% let idBase64 = btoa(id) %>
-<div id="<%= idBase64 %>" class="section center-align">
+<div id="<%= id %>" class="section center-align">
     <h4><%= title %></h4>
     <h6><%= date_published %>
     <% tags.forEach(tag => { %>
@@ -10,7 +9,7 @@
   <div class="divider"></div>
   <p class="left-align"><%= content_text %></p>
 
-    <a class="waves-effect waves-light btn modal-trigger blue-grey lighten-3 hoverable" href="blog/#<%= idBase64 %>">继续阅读</a>
+    <a class="waves-effect waves-light btn modal-trigger blue-grey lighten-3 hoverable" href="blog/#<%= id %>">继续阅读</a>
 
 
 </div>

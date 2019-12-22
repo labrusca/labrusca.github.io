@@ -92,7 +92,7 @@ class BlogFeeds:
                     tags = fileinfo['tags'], 
                     content_text = fileinfo['description'],
                     author = "Labrusca",
-                    id = f"https://labrusca.net/articles/{filename}",
+                    id = b64_id,
                     date_published = datetime.datetime(int(filedate[0]), int(filedate[1]), int(filedate[2]), int(filedate[3][:2]), int(filedate[3][2:-3])).isoformat('T')
                     ).data, \
                 rfeed.Item(
@@ -101,7 +101,7 @@ class BlogFeeds:
                     categories = fileinfo['tags'], 
                     description = fileinfo['description'],
                     author = "labrusca@live.com (Labrusca)",
-                    guid = rfeed.Guid(f"https://labrusca.net/articles/{filename}"),
+                    guid = rfeed.Guid(b64_id),
                     pubDate = datetime.datetime(int(filedate[0]), int(filedate[1]), int(filedate[2]), int(filedate[3][:2]), int(filedate[3][2:-3])))
 
     def save_feed_file(self):
