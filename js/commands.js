@@ -63,7 +63,7 @@ var terminal = new Terminal('terminal', {welcome: '<h3>欢迎来到Light of Sera
                 return 'login as root.'
 
             case 'startx':
-                self.location = 'index.html'
+                self.location = 'index_.html'
                 return '跳转中...'
                 case 'theme':
 				if (args && args[0]) {
