@@ -81,14 +81,16 @@ function Christmas(){
 }
 
 function Aprilfool(){
-    self.location = 'index1.html'
+    self.location = '404.html'
 }
 
 switch(whatsfestival()){
     case "Christmas":
+        console.log("Christmas")
         Christmas()
         break
     case "Aprilfool":
+        console.log("Aprilfool")
         Aprilfool()
         break
     default:
