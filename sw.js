@@ -1,4 +1,4 @@
-var cacheName = 'labrusca-net--beta1';
+var cacheName = 'labrusca-net--beta2';
 
 var urlsToCache = [
     '/',
