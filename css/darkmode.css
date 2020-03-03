@@ -1,3 +1,9 @@
-.darkmode--activated nav, .darkmode--activated footer,.darkmode--activated .sidenav{
-    color : black
+.darkmode--activated .modal, .darkmode--activated .modal-footer, .darkmode--activated .sidenav, .darkmode--activated .sidenav li a{
+    color : white;
+    background-color : black
+  }
+
+  /* darkmode-ignore */
+  nav, footer,a{
+    isolation: isolate;
   }
