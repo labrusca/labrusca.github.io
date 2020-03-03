@@ -1,10 +1,10 @@
 <nav class="nav-extended blue-grey lighten-3">
         <div class="nav-wrapper">
             <a href="<%= home_page_url %>" class="brand-logo truncate left"><%= title %></a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+            <a href="#" onclick="$('#mobile-demo').sidenav('open');" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a class="waves-effect waves-light" href="#/timeline">时间线</a></li>
-                <li><a class="waves-effect waves-light modal-trigger" data-target="modal-about">关于我</a></li>
+                <li><a class="waves-effect waves-light modal-trigger" onclick="$('#modal-about').modal('open');">关于我</a></li>
                 <li><a class="waves-effect waves-light" href="#/contact">联系我</a></li>
                 <li><a  href="/rss.xml"><i class="material-icons">rss_feed</i></a></li>
                 <li>
@@ -34,7 +34,7 @@
 <ul class="sidenav" id="mobile-demo">
     <li><a class="waves-effect waves-light" href="/">首页</a></li>
     <li><a class="waves-effect waves-light" href="#/timeline">时间线</a></li>
-    <li><a class="waves-effect waves-light modal-trigger" onclick="$('.modal').modal('open');">关于我</a></li>
+    <li><a class="waves-effect waves-light modal-trigger" onclick="$('#modal-about').modal('open');$('#mobile-demo').sidenav('close')">关于我</a></li>
     <li><a class="waves-effect waves-light" href="#/contact">联系我</a></li>
     <li><div class="divider"></div></li>
     <li><a class="waves-effect waves-light" onclick="darkmode.toggle()">夜间模式开关</a></li>
