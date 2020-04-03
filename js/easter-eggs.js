@@ -98,6 +98,7 @@ switch(whatsfestival()){
         break
     case "SadDay":
         Sad()
+        break
     default:
         console.log(`${month+1}月${day}日`)
 }
