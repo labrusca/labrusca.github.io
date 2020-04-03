@@ -4,7 +4,8 @@ const day = today.getDate()
 
 function whatsfestival(){
     if ((month==11 && day>=24) || (month==0 && day<=6)){return "Christmas"}
-    if ((month==3) && (day==1)){return "Aprilfool"}
+    if (month==3 && day==1){return "Aprilfool"}
+    if ((month==3 && day==4) || (month==5 && day==5)|| (month==11 && day==13)){return "SadDay"}
 }
 
 function Christmas(){
@@ -95,6 +96,12 @@ switch(whatsfestival()){
         console.log("Aprilfool")
         Aprilfool()
         break
+    case "SadDay":
+        Sad()
     default:
         console.log(`${month+1}月${day}日`)
+}
+//遇到特殊纪念悼念日时全站变黑白
+function Sad(){
+    $("html").css("-webkit-filter", "grayscale(100%)")
 }
