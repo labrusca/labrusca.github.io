@@ -82,9 +82,9 @@ function Christmas(){
 }
 
 function Aprilfool(){
-    //self.location = '404.html'
+    self.location = '404.html'
     alert("今日网站不开门。何不关注下COVID-19疫情呢？")
-    self.location = "https://ncov.dxy.cn/ncovh5/view/pneumonia?from=labrusca.net"
+    //self.location = "http://bmfw.www.gov.cn/yqfxdjcx/risk.html"
 }
 
 switch(whatsfestival()){
